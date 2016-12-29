@@ -11,7 +11,7 @@
     <title>Meat &amp; Bone</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
@@ -28,7 +28,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-	
+
   <body>
 
     <!-- Fixed navbar -->
@@ -68,17 +68,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+
     <!-- script for customizing the content (Jumbotron contentDiv) -->
     <script>
-		var homeContentHtml = "<h1>Description</h1><p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p><p>To see the difference between static and fixed top navbars, just scroll.</p><p><a class='btn btn-lg btn-primary' href='../../components/#navbar' role='button'>View navbar docs &raquo;</a></p>";
+		var homeContentHtml = "<h1>Description</h1><p>This project is designed to create more comfortable orthodontic devices, in paticular, plates that press against the upper palette.The program takes a slice of skin on the upper palette, represented as a single triangle mesh surface, and a scan of the skull around the upper palette,also represented by a triangle mesh. The program then moves each point in the skin cut out along their normals, according to their distance from the bone.Finally, the modified surface is transformed into a solid figure with beveled edges.</p><p>To see the difference between static and fixed top navbars, just scroll.</p><p><a class='btn btn-lg btn-primary' href='../../components/#navbar' role='button'>View navbar docs &raquo;</a></p> ";
 		var projectCodeContentHtml = "<p>My project code on GitHub.</p>";
 		var contactContentHtml = "<p>About myself and how to contact me.</p>";
-		
+
 		$(function() {
     		$( "#contentDiv" ).html(homeContentHtml);
   		});
-		
+
 		$( "#homeLink" ).click(function() {
 			$( "#homeLink" ).addClass( "active" );
 			$( "#projectCodeLink" ).removeClass( "active" );
@@ -97,7 +97,7 @@
 			$( "#homeLink" ).removeClass( "active" );
 			$( "#contentDiv" ).html(contactContentHtml);
 		});
-		
+
 	</script>
   </body>
 </html>

@@ -47,6 +47,7 @@
           <ul class="nav navbar-nav">
             <li class="active" id="homeLink"><a href="#">Home</a></li>
             <li id="projectCodeLink"><a href="#projectCode" >Project Code</a></li>
+            <li id="imagesLink"><a href="#images" >Images</a></li>
             <li id="contactLink"><a href="#contact" >Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -73,6 +74,7 @@
     <script>
 		var homeContentHtml = "<h1>Description</h1><p>This project is designed to create more comfortable orthodontic devices, in paticular, plates that press against the upper palette.The program takes a slice of skin on the upper palette, represented as a single triangle mesh surface, and a scan of the skull around the upper palette,also represented by a triangle mesh. The program then moves each point in the skin cut out along their normals, according to their distance from the bone.Finally, the modified surface is transformed into a solid figure with beveled edges.</p><p>Under Construction</p><p><a class='btn btn-lg btn-primary' href='../../components/#navbar' role='button'>View navbar docs &raquo;</a></p> ";
 		var projectCodeContentHtml = "<p>My project code on GitHub.</p>";
+    var imagesContentHtml = "<p>Under Construction</p>";
 		var contactContentHtml = "<p>About myself and how to contact me.</p>";
 
 		$(function() {
@@ -82,19 +84,29 @@
 		$( "#homeLink" ).click(function() {
 			$( "#homeLink" ).addClass( "active" );
 			$( "#projectCodeLink" ).removeClass( "active" );
+      $( "#imagesLink" ).removeClass( "active" );
 			$( "#contactLink").removeClass( "active" );
 			$( "#contentDiv" ).html(homeContentHtml);
 		});
 		$( "#projectCodeLink" ).click(function() {
 			$( "#projectCodeLink" ).addClass( "active" );
 			$( "#homeLink" ).removeClass( "active" );
+      $( "#imagesLink" ).removeClass( "active" );
 			$( "#contactLink").removeClass( "active" );
 			$( "#contentDiv" ).html(projectCodeContentHtml);
+		});
+    $( "#imagesLink" ).click(function() {
+			$( "#imagesLink" ).addClass( "active" );
+			$( "#projectCodeLink" ).removeClass( "active" );
+			$( "#homeLink" ).removeClass( "active" );
+      $( "#contactLink" ).removeClass( "active" );
+			$( "#contentDiv" ).html(imagesContentHtml);
 		});
 		$( "#contactLink" ).click(function() {
 			$( "#contactLink" ).addClass( "active" );
 			$( "#projectCodeLink" ).removeClass( "active" );
 			$( "#homeLink" ).removeClass( "active" );
+      $( "#imagesLink" ).removeClass( "active" );
 			$( "#contentDiv" ).html(contactContentHtml);
 		});
 

@@ -16,13 +16,13 @@
 
     <!-- Custom styles for this template -->
     <style>
-    th, td {
-    padding: 15px;
-    }
-		body {
-  			min-height: 2000px;
-  			padding-top: 70px;
-		}
+      td {
+          padding: 15px;
+      }
+  		body {
+    			min-height: 2000px;
+    			padding-top: 70px;
+  		}
 	</style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -75,10 +75,17 @@
 
     <!-- script for customizing the content (Jumbotron contentDiv) -->
     <script>
-		var homeContentHtml = "<h1>Description</h1><p>This project is designed to create more comfortable orthodontic devices, in paticular, plates that press against the upper palette.The program takes a slice of skin on the upper palette, represented as a single triangle mesh surface, and a scan of the skull around the upper palette,also represented by a triangle mesh. The program then moves each point in the skin cut out along their normals, according to their distance from the bone.Finally, the modified surface is transformed into a solid figure with beveled edges, ready to be 3d printed.</p><p>Under Construction</p>";
+		var homeContentHtml = "<h2>Description</h2><p> \
+     This project is designed to create more comfortable orthodontic devices, in paticular, \
+     plates that press against the upper palette.The program takes a slice of skin on the upper palette, \
+     represented as a single triangle mesh surface, and a scan of the skull around the upper palette, \
+     also represented by a triangle mesh. The program then moves each point in the skin cut out along their normals,  \
+     according to their distance from the bone.Finally, the modified surface is transformed into a solid figure with beveled edges, \
+      ready to be 3d printed.</p> \
+      <p>Under Construction</p>";
 		var projectCodeContentHtml = "<p>My project code on GitHub.</p>";
     var imagesContentHtml = "<table > \
-      <th colspan='2'>An Example of Input</th> \
+      <th colspan='2'> <h2>An Example of Input </h2></th> \
       <tr> \
         <td colspan='2'> \
           <img class='center-block' src =  '' Reference.JPG ' width =  '450'> \
@@ -100,7 +107,7 @@
           <p>This is the reference. The distance from the work surface to the reference is used to adjust the work surface is used modify the work surface. \
         </td> \
       </tr> \
-      <th colspan='2'>An Example of Output</th> \
+      <th colspan='2'> <h2>An Example of Output</h2></th> \
       <tr> \
         <td> \
           <img src =  ' Final.JPG ' width =  '450'> \

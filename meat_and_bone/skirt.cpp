@@ -83,9 +83,13 @@ bool make_skirt(
 	Eigen::MatrixXd V_prev = V;
 	Eigen::MatrixXi F_prev = F;
 
+	V_prev.conservativeResize(V_plus.rows() + skirts * num_border_v, 3);
+	F_prev.conservativeResize(F_plus.rows() + 2 * skirts * num_border_v, 3);
+
 	double delta_bitan = displacement / skirts;
 	double delta_norm = offset / denominator + drop;
 	cout << "Deltabitan = " << delta_bitan <<  endl;
+
 
 	for (int i = 0; i < skirts; i++)
 	{

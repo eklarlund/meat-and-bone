@@ -48,7 +48,7 @@ void find_distance(
 			std::cout << ".";
 		}
 	}
-	std::cout << "ray shooting done";
+	std::cout << "ray shooting done\n";
 }
 
 void interpolate_surfaces(

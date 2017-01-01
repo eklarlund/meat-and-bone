@@ -208,7 +208,6 @@ int main(int argc, char* argv[])
 	if (make_skirt(V, F, N_smooth, V_plus, F_plus, borderLoop, 4, displacement, offset, drop)) 
 		cout << "Make skirt worked?";
 	
-	cout << "\nFirst F:" << F_plus.row(1);
 	Eigen::MatrixXd V_out;
 	Eigen::MatrixXi F_out;
 	if (make_solid(V_plus,F_plus, borderLoop, V_out, F_out, solid_smooth, thickness))

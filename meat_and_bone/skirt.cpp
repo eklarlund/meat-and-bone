@@ -59,6 +59,7 @@ bool make_skirt(
 	double denominator = triangle_number(skirts);
 
 	const int n = V.rows();
+	const int n_faces = F.rows();
 	Eigen::VectorXi adjTriangles(n);//Number of triangles adjacent to Vertex in  V at same index
 	Eigen::VectorXi borderStatus(n);
 
@@ -83,25 +84,25 @@ bool make_skirt(
 	Eigen::MatrixXd V_prev = V;
 	Eigen::MatrixXi F_prev = F;
 
-	V_prev.conservativeResize(V_plus.rows() + skirts * num_border_v, 3);
-	F_prev.conservativeResize(F_plus.rows() + 2 * skirts * num_border_v, 3);
+	V_prev.conservativeResize(V.rows() + skirts * num_border_v, 3);
+	F_prev.conservativeResize(F.rows() + 2 * skirts * num_border_v, 3);
 
 	double delta_bitan = displacement / skirts;
 	double delta_norm = offset / denominator + drop;
 	cout << "Deltabitan = " << delta_bitan <<  endl;
 
-
+	
 	for (int i = 0; i < skirts; i++)
 	{
 		cout << "\ndelta bitan, norm: " << delta_bitan << ", " << delta_norm;
-
-		add_skirt_layer(V_prev, F_prev, bitangent, borderLoop, borderLoop_orig,
+		int F_curr = n_faces + num_border_v*i*2;
+		add_skirt_layer(n + i * num_border_v, F_curr, V_prev, F_prev, bitangent, borderLoop, borderLoop_orig,
 			N_smooth, V_plus, F_plus, delta_norm, delta_bitan);
 		for (int j = 0; j < num_border_v; j++) {
 			borderLoop(j) = (i)*num_border_v + n + j;
 		}
-		V_prev.conservativeResize(V_plus.rows(), V_plus.cols());
-		V_prev.conservativeResize(F_plus.rows(), F_plus.cols());
+		//V_prev.conservativeResize(V_plus.rows(), V_plus.cols());
+		//V_prev.conservativeResize(F_plus.rows(), F_plus.cols());
 		V_prev = V_plus;
 		F_prev = F_plus;
 
@@ -273,6 +274,8 @@ void make_bitangents(
 }
 
 void add_skirt_layer(
+	const int n,
+	int f_curr,
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
 	const Eigen::MatrixXd & bitangent,
@@ -287,13 +290,14 @@ void add_skirt_layer(
 
 	
 	const int num_border_v = borderLoop.rows();
-	int f_curr = F.rows();
-	const int n = V.rows();
+	//int f_curr = F.rows();
+	//const int n = V.rows();
 
 	V_plus = V;
 	F_plus = F;
-	V_plus.conservativeResize(V_plus.rows() + num_border_v, 3);
-	F_plus.conservativeResize(F_plus.rows() + 2 * num_border_v, 3);
+	cout << "F_curr: " << f_curr << "F.rows: " << F.rows() << "num_border_v: " << num_border_v;
+	//V_plus.conservativeResize(V_plus.rows() + num_border_v, 3);
+	//F_plus.conservativeResize(F_plus.rows() + 2 * num_border_v, 3);
 
 	for (int i = 0; i < num_border_v; i++)
 	{//Adds 1st layer of edge

@@ -75,6 +75,8 @@ void make_bitangents(
 	Eigen::MatrixXd & bitangent);
 
 void add_skirt_layer(
+	const int n,
+	int f_curr,
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
 	const Eigen::MatrixXd & bitangent,

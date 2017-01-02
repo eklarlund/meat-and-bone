@@ -207,6 +207,7 @@ int main(int argc, char* argv[])
 
 	if (make_skirt(V, F, N_smooth, V_plus, F_plus, borderLoop, 4, displacement, offset, drop)) 
 		cout << "Make skirt worked?";
+	igl::writeOBJ(res_surface, V_plus, F_plus); // remove after testing
 	
 	Eigen::MatrixXd V_out;
 	Eigen::MatrixXi F_out;

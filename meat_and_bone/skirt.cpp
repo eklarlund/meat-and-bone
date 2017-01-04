@@ -101,8 +101,6 @@ bool make_skirt(
 		for (int j = 0; j < num_border_v; j++) {
 			borderLoop(j) = (i)*num_border_v + n + j;
 		}
-		//V_prev.conservativeResize(V_plus.rows(), V_plus.cols());
-		//V_prev.conservativeResize(F_plus.rows(), F_plus.cols());
 		V_prev = V_plus;
 		F_prev = F_plus;
 

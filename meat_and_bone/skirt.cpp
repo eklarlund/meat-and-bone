@@ -125,7 +125,6 @@ bool explore_border_loop(
 	Eigen::MatrixXd & bitangent,
 	const int v_border_1st) {
 
-	borderLoop.fill(-1);
 	borderLoop(0) = v_border_1st;
 	borderStatus(borderLoop(0)) = 2;
 
@@ -165,7 +164,7 @@ bool explore_border_loop(
 	}
 	make_bitangents(V, F, borderLoop, Normals, bitangent);
 	if (!norms_are_oriented(V, F, bitangent, borderLoop)) {
-		cout << endl << "Flipping bitans" << endl;
+		cout << endl << "Flipping bitangents" << endl;
 		borderLoop.reverseInPlace();
 		bitangent = bitangent.colwise().reverse().eval();
 		bitangent = -bitangent;
@@ -213,7 +212,7 @@ int locate_borders(
 			v_border_1st = i;
 		}
 	}
-	 cout << "\n n_border_v= " << num_border_v << endl;
+	cout << " n_border_v= " << num_border_v << endl;
 
 	if (v_border_1st == -1)
 	{
@@ -280,14 +279,10 @@ void add_skirt_layer(
 
 	
 	const int num_border_v = borderLoop.rows();
-	//int f_curr = F.rows();
-	//const int n = V.rows();
 
 	V_plus = V;
 	F_plus = F;
 	cout << "F_curr: " << f_curr << "F.rows: " << F.rows() << "num_border_v: " << num_border_v;
-	//V_plus.conservativeResize(V_plus.rows() + num_border_v, 3);
-	//F_plus.conservativeResize(F_plus.rows() + 2 * num_border_v, 3);
 
 	for (int i = 0; i < num_border_v; i++)
 	{//Adds 1st layer of edge
@@ -334,7 +329,7 @@ bool norms_are_oriented(
 			}
 		}
 
-		Eigen::Vector3d normal = bitangent.row(0);
+		Eigen::Vector3d normal = bitangent.row(times);
 		Eigen::Vector3d v_going_out = V.row(v_1st) - V.row(v_3rd);
 
 		if (normal.dot(v_going_out) > 0) {
@@ -344,8 +339,8 @@ bool norms_are_oriented(
 			incorrects++;
 		}
 	}
-	cout << "Corrects: " << corrects << endl;
-	cout << "Incorrects: " << incorrects << endl;
+	cout << "Normals pointing out: " << corrects << endl;
+	cout << "Normals pointing in: " << incorrects << endl;
 	if (corrects >= incorrects) {
 		cout << "Orientation: correct" << endl;
 		return true;

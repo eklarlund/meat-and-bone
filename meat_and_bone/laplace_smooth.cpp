@@ -16,6 +16,7 @@ template <typename DerivedV, typename DerivedF>
 void laplace_smooth(
 	const Eigen::PlainObjectBase<DerivedV>& V,
 	const Eigen::PlainObjectBase<DerivedF>& F,
+	Eigen::PlainObjectBase<DerivedV>& V_smooth,
 	Eigen::PlainObjectBase<DerivedV> & N_smooth,
 	double smooth_factor)
  {
@@ -30,8 +31,7 @@ void laplace_smooth(
 	const auto & S = (M - smooth_factor*L);
 	Eigen::SimplicialLLT<Eigen::SparseMatrix<double > > solver(S);
 	assert(solver.info() == Eigen::Success);
-	Eigen::MatrixXd U;
-	U = solver.solve(M * V).eval();
+	V_smooth = solver.solve(M * V).eval();
 
 	//Flip flipped normals
 	Eigen::MatrixXi C;
@@ -39,7 +39,8 @@ void laplace_smooth(
 	assert(C.maxCoeff() == 0);
 	Eigen::MatrixXi FF; //F matrix, but oriented so that all normals point away from center of mass, inconsistent orientation
 	Eigen::VectorXi I;
-	igl::orient_outward(U, F, C, FF, I);
+	igl::orient_outward(V_smooth, F, C, FF, I);
+	igl::per_vertex_normals(V_smooth, FF, N_smooth);
 }
 
 
@@ -49,6 +50,7 @@ void laplace_smooth(
 	Eigen::Matrix<int, -1, -1, 0, -1, -1> >(
 		Eigen::PlainObjectBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> > const&,
 		Eigen::PlainObjectBase<Eigen::Matrix<int, -1, -1, 0, -1, -1> > const&,
+		Eigen::PlainObjectBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> > &,
 		Eigen::PlainObjectBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> >&,
 		double);
 #endif

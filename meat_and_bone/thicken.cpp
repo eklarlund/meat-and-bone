@@ -16,8 +16,8 @@ bool make_solid(
 	const int n = V.rows();
 	const int num_faces = F.rows();
 	const int num_border_v = borderLoop.rows();
-	Eigen::MatrixXd N;
-	laplace_smooth(V, F, N, smoothf);
+	Eigen::MatrixXd V_smooth, N;
+	laplace_smooth(V, F, V_smooth, N, smoothf);
 
 	Eigen::MatrixXd V_new = V;
 	Eigen::MatrixXi F_new = F;

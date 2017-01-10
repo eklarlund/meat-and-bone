@@ -20,6 +20,7 @@
 	 void laplace_smooth(
 		 const Eigen::PlainObjectBase<DerivedV>& V,
 		 const Eigen::PlainObjectBase<DerivedF>& F,
+		 Eigen::PlainObjectBase<DerivedV>& V_smooth,
 		 Eigen::PlainObjectBase<DerivedV> & N_smooth,
 		 double smooth_factor);
 

@@ -23,13 +23,6 @@ void laplace_smooth(
 	Eigen::SparseMatrix<double> L;
 	igl::cotmatrix(V, F, L);
 
-
-	// Diagonal per-triangle "mass matrix"
-	Eigen::VectorXd dblA;
-	igl::doublearea(V, F, dblA);
-	// Place areas along diagonal #dim times
-	const auto & T = 1.0 * (dblA.replicate(3, 1)*0.5).asDiagonal();
-
 	// Recompute just mass matrix on each step
 	Eigen::SparseMatrix<double> M;
 	igl::massmatrix(V, F, igl::MASSMATRIX_TYPE_BARYCENTRIC, M); //Replace V1 with U if looping
@@ -39,23 +32,14 @@ void laplace_smooth(
 	assert(solver.info() == Eigen::Success);
 	Eigen::MatrixXd U;
 	U = solver.solve(M * V).eval();
-	// Compute centroid and subtract (also important for numerics)
-
-	igl::doublearea(U, F, dblA);
-	double area = 0.5 * dblA.sum();
-	U.array() /= sqrt(area);
-
 
 	//Flip flipped normals
 	Eigen::MatrixXi C;
 	igl::orientable_patches(F, C);
+	assert(C.maxCoeff() == 0);
 	Eigen::MatrixXi FF; //F matrix, but oriented so that all normals point away from center of mass, inconsistent orientation
 	Eigen::VectorXi I;
 	igl::orient_outward(U, F, C, FF, I);
-
-
-
-	igl::per_vertex_normals(U, FF, igl::PER_VERTEX_NORMALS_WEIGHTING_TYPE_AREA, N_smooth);//Use vertices of smoothed surface
 }
 
 

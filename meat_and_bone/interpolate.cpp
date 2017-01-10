@@ -93,7 +93,7 @@ double displace(
 	double ymax
 )
 {//calculates the magnitude of displacement
-	double xs = xmax - xmin, ys = ymax - ymin;
+	double xRange = xmax - xmin, yRange = ymax - ymin;
 	if (x > xmax)
 	{
 		return ymax;
@@ -103,7 +103,7 @@ double displace(
 		return ymin;
 	}
 	else
-		return ys*(x - xmin) / xs*(x - xmin) / xs*(3 - 2 * (x - xmin) / xs) + ymin;
+		return yRange*(x - xmin) / xRange*(x - xmin) / xRange*(3 - 2 * (x - xmin) / xRange) + ymin;
 }
 
 void displace_vertices(

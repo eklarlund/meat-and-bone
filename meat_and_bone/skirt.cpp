@@ -165,18 +165,10 @@ bool explore_border_loop(
 	}
 	make_bitangents(V, F, borderLoop, Normals, bitangent);
 	if (!norms_are_oriented(V, F, bitangent, borderLoop)) {
-		cout << endl << "Flippping bitans" << endl;
-		Eigen::VectorXi borderLoop_orig = borderLoop;
-		for (int i = 0; i < borderLoop.rows(); i++) {
-			borderLoop.row(i) = borderLoop_orig.row(borderLoop.rows() - i - 1);
-			bitangent.row(i) = bitangent.row(bitangent.rows() - i - 1);
-		}
-		for (int i = 0; i < bitangent.rows(); i++)
-		{
-			for (int j = 0; j < 3; j++) {
-				bitangent(i,j) = -1*bitangent(i,j);
-			}
-		}
+		cout << endl << "Flipping bitans" << endl;
+		borderLoop.reverseInPlace();
+		bitangent = bitangent.colwise().reverse().eval();
+		bitangent = -bitangent;
 	}
 	//After processing all neighbors
 	if (i_border + 1 == num_border_v)

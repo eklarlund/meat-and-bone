@@ -178,10 +178,12 @@ int main(int argc, char* argv[])
 		cerr << "file read error" << ref_surface << endl;
 		exit(1);
 	}
+	Eigen::MatrixXd V_orig(V);
+	Eigen::MatrixXi F_orig(F);
 
 	int hits = 0, misses = 0;
-	Eigen::MatrixXd N_smooth;
-	laplace_smooth(V, F, N_smooth, smoothF);
+	Eigen::MatrixXd V_smooth, N_smooth;
+	laplace_smooth(V, F, V_smooth, N_smooth, smoothF);
 
 	Eigen::VectorXd distances(N_smooth.rows());
 
@@ -189,14 +191,10 @@ int main(int argc, char* argv[])
 	std::vector<std::vector<int> > adj;
 	igl::adjacency_list(F, adj);
 
-	find_distance(V, N_smooth, V_ref, F_ref, distances, hits, misses);//Comment out for speed
-	interpolate_surfaces(adj, distances, misses); //Commented out for speed
-	
-	
-	Eigen::MatrixXd V_orig(V);
-	Eigen::MatrixXi F_orig(F);
+	find_distance(V, N_smooth, V_ref, F_ref, distances, hits, misses);
+	interpolate_surfaces(adj, distances, misses);
 
-	displace_vertices(V, N_smooth, distances, xmin, xmax, ymin, ymax); //Comment out for speed
+	displace_vertices(V, N_smooth, distances, xmin, xmax, ymin, ymax); 
 
 	igl::writeOBJ("../displaced_surface", V, F);
 

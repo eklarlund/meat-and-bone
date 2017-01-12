@@ -89,15 +89,14 @@
      The algorithm adjusts each point in the work surface based on the local distance to the reference surface. \
      The result is thickened, then outputed as a 3d printable object file.</p> \
      <h2>Technical Discussion</h2> <p>\
-     In order to increase the comfort of the device, the appliance has to be modified in two ways. \
-     First, in the areas where the skin is far away from the bone, the device needs to be pushed up, because the soft tissue will be compressed more in that area. \
-     Second, in the areas where the bone is close to the skin, the device needs to be depressed, so that it does not press against the bone too much.\
-     To accomplish these tasks, the program takes a slice of skin on the upper palette, \
-     represented as a single triangle mesh surface, and a CT scan of the skull, \
-     also represented by a triangle mesh. The program then moves each point in the skin cut out along their normals,  \
-     according to their distance from the bone. The modified surface is then transformed into a solid figure with beveled edges, \
+      The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh. \
+      To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface. \
+      These displacements are calculated using the distance along the normal to the reference surface, according to the following graph.</p> \
+        <img src =  'Graph.JPG' width =  '450'> \
+      <p>The modified surface is then transformed into a solid figure with beveled edges, \
       ready to be 3d printed. \
-      <br>This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>";
+      </p><p>\
+      This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>";
 		var projectCodeContentHtml = "<a href = 'https://github.com/eklarlund/meat-and-bone.github.io'><p>Project Meat and Bone Code on Github.</p></a> \
     <br><p>The code takes inputs as such: </p> <br> <p>.libmeat_and_bone_bin.exe [-options] &lt;work surface&GT; &lt;reference surface&GT; &lt;output file&GT; </p> <br>\
     <p>options</p><ul><li><p>-d &lt;a&GT; &lt;b&GT; <br>Sets the minimum and maximum displacements of the work surface to &lt;a&GT; and &lt;b&GT;</p></li>\

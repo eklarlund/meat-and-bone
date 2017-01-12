@@ -24,7 +24,7 @@
 
 */
 double smoothF = 1; //Smoothing factor
-double ymin=-.2, ymax=.3, xmin=3, xmax=4.2; //infDisp is asymtote as x->-inf, amp is distance between asymptotes xint is x intercept, expS is x scale
+double ymin=-.2, ymax=.3, xmin=3, xmax=4.2; 
 double displacement = .4, offset = -.2, drop = -.01, thickness = .5, solid_smooth = 1;
 
 using namespace std;

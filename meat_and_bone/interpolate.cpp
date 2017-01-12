@@ -92,7 +92,7 @@ double displace(
 	double ymin,
 	double ymax
 )
-{//calculates the magnitude of displacement
+{//calculates the magnitude of displacement, uses linear displacement with maximum and minimum
 	double xRange = xmax - xmin, yRange = ymax - ymin;
 	if (x > xmax)
 	{

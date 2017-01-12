@@ -97,7 +97,15 @@
      according to their distance from the bone. The modified surface is then transformed into a solid figure with beveled edges, \
       ready to be 3d printed. \
       This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>";
-		var projectCodeContentHtml = "<a href = 'https://github.com/eklarlund/meat-and-bone.github.io'><p>My project code on GitHub.</p> </a>";
+		var projectCodeContentHtml = "<a href = 'https://github.com/eklarlund/meat-and-bone.github.io'><p>Project Meat and Bone Code on Github.</p></a> \
+    <br><p>The code takes inputs as such: </p> <br> <p>.libmeat_and_bone_bin.exe [-options] &lt;work surface&GT; &lt;reference surface&GT; &lt;output file&GT; </p> <br>\
+    <p>options</p><ul><li><p>-d &lt;a&GT; &lt;b&GT; <br>Sets the minimum and maximum displacements of the work surface to &lt;a&GT; and &lt;b&GT;</p></li>\
+    <li><p>-r &lt;a&GT; &lt;b&GT; <br> Sets the distance between work and reference surfaces where minimum and maximum displacement will occur to &lt;a&GT; and &lt;b&GT;</p></li>\
+    <li><p>-f &lt;a&GT;  <br> The distances from the work surface to the reference surface are caculated using the normal vectors on the work surface, \
+    this option adjusts how much these vectors are smoothed. A factor of 0 results in no smoothing. </p></li>\
+    <li><p>-b &lt;a&GT; &lt;b&GT;  &lt;c&GT; <br> Adjusts the beveled edges added to the device. &lt;a&GT; is the distance that the edges extend outwards, \
+    &lt;b&GT is the distance they extend downward, and &lt;c&GT is the initial displacement downards, if any.;</p></li>\
+    <br>";
     var imagesContentHtml = "<table > \
       <th colspan='2'> <h2>An Example of Input </h2></th> \
       <tr> \

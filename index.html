@@ -91,7 +91,7 @@
      <h2>Technical Discussion</h2> <p>\
       The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh. \
       To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface. \
-      These displacements are calculated using the distance along the normal to the reference surface, according to the following graph.</p> \
+      These displacements are calculated using the distance along the normal to the reference surface, according to the following graph, which uses the smoothstep function.</p> \
         <img src =  'Graph.JPG' width =  '450'> \
       <p>The modified surface is then transformed into a solid figure with beveled edges, \
       ready to be 3d printed. \

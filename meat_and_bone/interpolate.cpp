@@ -24,7 +24,7 @@ void find_distance(
 	int & hits,
 	int & misses) {
 
-	int num_dots = N_smooth.rows() / 20;
+	int num_dots = N_smooth.rows() / 20 > 2 ? N_smooth.rows() / 20 : 2;
 	distances.fill(DBL_MAX);
 	igl::Hit hit;
 

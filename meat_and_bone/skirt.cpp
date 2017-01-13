@@ -88,13 +88,14 @@ bool make_skirt(
 	F_prev.conservativeResize(F.rows() + 2 * skirts * num_border_v, 3);
 
 	double delta_bitan = displacement / skirts;
-	double delta_norm = offset / denominator + drop;
+	double delta_norm = drop;
 	cout << "Deltabitan = " << delta_bitan <<  endl;
 
 	
 	for (int i = 0; i < skirts; i++)
 	{
-		cout << "\ndelta bitan, norm: " << delta_bitan << ", " << delta_norm;
+		delta_norm += offset / denominator - ((i == 1) ? drop : 0);
+		cout << "\ndelta bitan, norm: " << delta_bitan << ", " << delta_norm << endl;
 		int F_curr = n_faces + num_border_v*i*2;
 		add_skirt_layer(n + i * num_border_v, F_curr, V_prev, F_prev, bitangent, borderLoop, borderLoop_orig,
 			N_smooth, V_plus, F_plus, delta_norm, delta_bitan);
@@ -103,9 +104,6 @@ bool make_skirt(
 		}
 		V_prev = V_plus;
 		F_prev = F_plus;
-
-		delta_norm += (i + 1) * offset / denominator - ((i == 0) ? drop : 0);
-
 		cout << "\n skirt layer " << i << " added\n";
 	}
 	return true;
@@ -282,7 +280,6 @@ void add_skirt_layer(
 
 	V_plus = V;
 	F_plus = F;
-	cout << "F_curr: " << f_curr << "F.rows: " << F.rows() << "num_border_v: " << num_border_v;
 
 	for (int i = 0; i < num_border_v; i++)
 	{//Adds 1st layer of edge

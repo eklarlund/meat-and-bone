@@ -130,18 +130,6 @@ int main(int argc, char* argv[])
 				return 1;
 			}
 		}
-		//else if (arg == "-0") {
-		//	if (i + 2 < argc) { //check for right # of inputs
-		//		istringstream(argv[++i]) >> thickness;
-		//		istringstream(argv[++i]) >> solid_smooth;
-		//	}
-		//	else {
-		//		cerr << "--o" << endl;
-		//		show_usage(argv[0]);
-		//		std::cout << "couldnt read x";
-		//		return 1;
-		//	}
-		//}
 
 		else {
 			if (i + 5 < argc)

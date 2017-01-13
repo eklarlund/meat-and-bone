@@ -72,28 +72,38 @@ file(GLOB mysources "${CMAKE_CURRENT_SOURCE_DIR}/meat_and_bone/*.cpp")
 
 # TARGETS
 
-add_library(libmeat_and_bone_lib STATIC ${mysources})
-add_executable(libmeat_and_bone_bin main.cpp)
+add_library(meat_and_bone_lib STATIC ${mysources})
+add_executable(meat_and_bone_bin main.cpp)
+add_executable(meat_and_bone_test test.cpp)
 
 # TARGETS - HOW
 
 # Library
-target_include_directories(libmeat_and_bone_lib PUBLIC
+target_include_directories(meat_and_bone_lib PUBLIC
   ${LIBMEAT_AND_BONE_INCLUDE_DIRS}
   ${LIBIGL_INCLUDE_DIRS})
-target_compile_definitions(libmeat_and_bone_lib PUBLIC 
+target_compile_definitions(meat_and_bone_lib PUBLIC 
   ${LIBIGL_DEFINITIONS})
-target_link_libraries(libmeat_and_bone_lib PUBLIC
+target_link_libraries(meat_and_bone_lib PUBLIC
   ${LIBIGL_LIBRARIES}
   ${LIBIGL_VIEWER_EXTRA_LIBRARIES})
 
 
 # Executable
-target_include_directories(libmeat_and_bone_bin PRIVATE 
+target_include_directories(meat_and_bone_bin PRIVATE 
   ${LIBIGL_INCLUDE_DIRS})
-target_compile_definitions(libmeat_and_bone_bin PRIVATE 
+target_compile_definitions(meat_and_bone_bin PRIVATE 
   ${LIBIGL_DEFINITIONS})
-target_link_libraries(libmeat_and_bone_bin PRIVATE
-  libmeat_and_bone_lib
+target_link_libraries(meat_and_bone_bin PRIVATE
+  meat_and_bone_lib
+  ${LIBIGL_LIBRARIES} 
+  ${LIBIGL_VIEWER_EXTRA_LIBRARIES})
+  
+target_include_directories(meat_and_bone_test PRIVATE 
+  ${LIBIGL_INCLUDE_DIRS})
+target_compile_definitions(meat_and_bone_test PRIVATE 
+  ${LIBIGL_DEFINITIONS})
+target_link_libraries(meat_and_bone_test PRIVATE
+  meat_and_bone_lib
   ${LIBIGL_LIBRARIES} 
   ${LIBIGL_VIEWER_EXTRA_LIBRARIES})

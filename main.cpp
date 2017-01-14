@@ -19,10 +19,13 @@
 #include <meat_and_bone/skirt.h>
 #include <meat_and_bone/laplace_smooth.h>
 
-/*
-	Usage: Pressure-Pad -s inf displavement, 0 displacement, x intercept, scale factor, smooth factor
+#define CHECK(expression, ...) (void)(                                                  \
+             expression ||                                                              \
+             (std::cerr << "FAIL! " << std::string(##__VA_ARGS__) << "\n" << (__FILE__) <<  \
+				", line: " << (unsigned)(__LINE__) << "\n"                              \
+	         << "EXPECTED: " << #expression << std::endl, std::abort));
 
-*/
+
 double smoothF = 1; //Smoothing factor
 double ymin=-.2, ymax=.3, xmin=3, xmax=4.2; 
 double displacement = .4, offset = -.2, drop = -.01, thickness = .5, solid_smooth = 1;
@@ -74,98 +77,33 @@ int main(int argc, char* argv[])
 	double scale = 1;
 
 	for (int i = 1; i < argc; ++i) {
-		string arg = argv[i];
-		if ((arg == "-h") || (arg == "--help")) {
+		if (i + 3 < argc)
+		{
+			std::cout << i + 5 << "   " << argc << endl;
+			cerr << "Too few arguements\n";
 			show_usage(argv[0]);
-			return 0;
+			return 1;
 		}
-		else if ((arg == "-d") || (arg == "--sdbcale")) {
-			if (i + 2 < argc) { //check for right # of inputs
-
-				istringstream(argv[++i]) >> ymin;
-				istringstream(argv[++i]) >> ymax;
-			}
-			else {
-				cerr << "--scale option requires real number" << endl;
-				show_usage(argv[0]);
-				std::cout << "couldnt read y";
-				return 1;
-			}
-		}
-		else if ((arg == "-r"))
-		{
-			if (i + 2 < argc) { //check for right # of inputs
-				istringstream(argv[++i]) >> xmin;
-				istringstream(argv[++i]) >> xmax;
-			}
-			else {
-				cerr << "--scale option requires real number" << endl;
-				show_usage(argv[0]);
-				std::cout << "couldnt read x";
-				return 1;
-			}
-		}
-		else if (arg == "-f")
-		{
-			if (i + 1 < argc) { //check for right # of inputs
-				istringstream(argv[++i]) >> smoothF;
-			}
-			else {
-				cerr << "--scale option requires real number" << endl;
-				show_usage(argv[0]);
-				std::cout << "Couldnt read sfactor";
-				return 1;
-			}
-		}
-		else if (arg == "-b") {
-			if (i + 3 < argc) { //check for right # of inputs
-				istringstream(argv[++i]) >> displacement;
-				istringstream(argv[++i]) >> offset;
-				istringstream(argv[++i]) >> drop;
-			}
-			else {
-				cerr << "-b" << endl;
-				show_usage(argv[0]);
-				std::cout << "couldnt read x";
-				return 1;
-			}
-		}
-
-		else {
-			if (i + 5 < argc)
-			{
-				std::cout << i + 5 << "   " << argc << endl;
-				cerr << "Too few arguements\n";
-				show_usage(argv[0]);
-				return 1;
-			}
-			work_surface = argv[i++];
-			cout << work_surface << endl;
-			ref_surface = argv[i++];
-			cout << ref_surface << endl;
-			res_surface = argv[i++];
-			cout << res_surface << endl;
-		}
+		work_surface = argv[i++];
+		cout << work_surface << endl;
+		ref_surface = argv[i++];
+		cout << ref_surface << endl;
+		res_surface = argv[i++];
+		cout << res_surface << endl;
 	}
 
 	Eigen::MatrixXd V;
 	Eigen::MatrixXi F;
 
-	if (!igl::read_triangle_mesh(work_surface, V, F))
-	{
-		cerr << "file read error" << work_surface << endl;
-		exit(1);
-	}
+	CHECK(igl::read_triangle_mesh(work_surface, V, F));
 	const int n = V.rows();
 
 	Eigen::MatrixXd V_ref;
 	Eigen::MatrixXi F_ref;
 
-	if (!igl::read_triangle_mesh(ref_surface, V_ref, F_ref))
-	{
-		cerr << "file read error" << ref_surface << endl;
-		exit(1);
-	}
+
+	CHECK(igl::read_triangle_mesh(ref_surface, V_ref, F_ref), "Read failure");
+	
 	Eigen::MatrixXd V_orig(V);
 	Eigen::MatrixXi F_orig(F);
 
@@ -175,13 +113,11 @@ int main(int argc, char* argv[])
 
 	Eigen::VectorXd distances(N_smooth.rows());
 
-
 	std::vector<std::vector<int> > adj;
 	igl::adjacency_list(F, adj);
 
 	find_distance(V, N_smooth, V_ref, F_ref, distances, hits, misses);
 	interpolate_surfaces(adj, distances, misses);
-
 	displace_vertices(V, N_smooth, distances, xmin, xmax, ymin, ymax); 
 
 	igl::writeOBJ("../displaced_surface", V, F);
@@ -190,16 +126,11 @@ int main(int argc, char* argv[])
 	Eigen::MatrixXd V_plus;
 	Eigen::MatrixXi F_plus;
 
-
-	if (make_skirt(V, F, N_smooth, V_plus, F_plus, borderLoop, 4, displacement, offset, drop)) 
-		cout << "Make skirt worked?";
-	igl::writeOBJ(res_surface, V_plus, F_plus); // remove after testing
+	CHECK(make_skirt(V, F, N_smooth, V_plus, F_plus, borderLoop, 4, displacement, offset, drop), "Make Skirt Error");
 	
 	Eigen::MatrixXd V_out;
 	Eigen::MatrixXi F_out;
-	if (make_solid(V_plus,F_plus, borderLoop, V_out, F_out, solid_smooth, thickness))
-		cout << "\nmake_solid worked?";
-
+	CHECK(make_solid(V_plus,F_plus, borderLoop, V_out, F_out, solid_smooth, thickness));
 
 	std::cout << "\nhits: " << hits << "\nmisses: " << misses << endl;
 	igl::writeOBJ(res_surface, V_out, F_out);

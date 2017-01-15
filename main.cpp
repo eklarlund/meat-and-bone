@@ -41,8 +41,6 @@ void show_result(Eigen::MatrixXd V1, Eigen::MatrixXi F1, Eigen::MatrixXd V2, Eig
 	Vv << V1, V2;
 	Eigen::MatrixXi Fv(F1.rows() + F2.rows(), F1.cols());
 	Fv << F1, (F2.array() + V1.rows());
-	Eigen::MatrixXd Vv_(Vv);
-	Eigen::MatrixXi Fv_(Fv);
 	// blue color for faces of first mesh, orange for second
 	Eigen::MatrixXd Co(Fv.rows(), 3);
 	Co <<
@@ -50,7 +48,7 @@ void show_result(Eigen::MatrixXd V1, Eigen::MatrixXi F1, Eigen::MatrixXd V2, Eig
 		Eigen::RowVector3d(1.0, 0.7, 0.2).replicate(F2.rows(), 1);
 
 	igl::viewer::Viewer viewer;
-	viewer.data.set_mesh(Vv_, Fv_);
+	viewer.data.set_mesh(Vv, Fv);
 	viewer.data.set_colors(Co);
 	viewer.data.set_face_based(true);
 	viewer.launch();
@@ -135,8 +133,8 @@ int main(int argc, char* argv[])
 	std::cout << "\nhits: " << hits << "\nmisses: " << misses << endl;
 	igl::writeOBJ(res_surface, V_out, F_out);
 
-   Eigen::MatrixXd V_plus_(V_out);
-   Eigen::MatrixXi F_plus_(F_out);
-   show_result(V_plus_, F_plus_, V_orig, F_orig);
+  // Eigen::MatrixXd V_plus_(V_out);
+   //Eigen::MatrixXi F_plus_(F_out);
+   show_result(V_out, F_out, V_orig, F_orig);
   return 1;
 }

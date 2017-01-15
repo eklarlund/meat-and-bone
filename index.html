@@ -61,7 +61,81 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron" id="contentDiv">
+        <div id = "homeContentDiv">
+          <h1> Project Meat and Bone</h1>
+          <h2>Goal</h2><p>
+           In orthodontics and dentistry, devices such as Haas appliances and partial dentures apply pressure to the bone inside the mouth.
+           These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or an imprint in putty.
+           Appliances made in this way are irritating to soft tissue, especially where the bone is close to the device.
+           This project is designed to take the imprint, and adjust it based on the relative distance to the bone, making a more comfortable appliance.
+           In the areas where the bone is close to the surface, the appliance must be pulled away from the soft tissue.
+           Additionally, where the bone is far away from the surface, the contact surface must be pushed towards the bone to compensate for increased displacement of soft tissue.
+           This method may also be used for other prosthesis.
+           </p><p>
+           The goal of this project is to find a way to calculate surfaces based on simple user specifications accomodating these biomechanical properties.
+           More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface).
+           The algorithm adjusts each point in the work surface based on the local distance to the reference surface.
+           The result is thickened, then outputed as a 3d printable object file.</p>
+           <h2>Technical Discussion</h2> <p>
+            The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh.
+            To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface.
+            These displacements are calculated using the distance along the normal to the reference surface, according to the following graph, which uses the smoothstep function.</p>
+              <img src =  'Graph.JPG' width =  '450'>
+            <p>The modified surface is then transformed into a solid figure with beveled edges,
+            ready to be 3d printed.
+            </p><p>
+            This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>
       </div>
+      <div id = "projectCodeContentDiv" style = "display: none">
+        <a href = 'https://github.com/eklarlund/meat-and-bone.github.io'><p>Project Meat and Bone Code on Github.</p></a>
+        <br><p>The code takes inputs as such: </p> <br> <p>.libmeat_and_bone_bin.exe &lt;work surface&GT; &lt;reference surface&GT; &lt;output file&GT; </p> <br>
+      </div>
+
+
+      <div id = "imagesContentDiv" style = "display: none">
+        <table >
+          <th colspan='2'> <h2>An Example of Input </h2></th>
+          <tr>
+            <td>
+              <img src =  'Work.JPG' width =  '450'>
+            </td>
+            <td>
+              <p>This is the work surface, cut from the model of soft tissue in the upper palette. </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src =  ' Reference.JPG ' width =  '450'>
+            </td>
+            <td>
+              <p>This is the reference. The distance from the work surface to the reference is used to adjust the work surface.
+            </td>
+          </tr>
+          <th colspan='2'> <h2>An Example of Output</h2></th>
+          <tr>
+            <td>
+              <img src =  ' Final.JPG ' width =  '450'>
+            </td>
+            <td>
+              <p>This is the final product, the work surface has been adjusted to account for bony potrusions that would otherwise be uncomfortable, and made into a solid with beveled edges.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src =  ' Compare.JPG ' width =  '450'>
+            </td>
+            <td>
+              <p>A comparison of the initial work surface and the final product. The lighter grey surface is the final.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+      <div id = "contactContentDiv" style = "display: none">
+          <p>You can reach me at: esbenklarlund@gmail.com</p>
+      </div>
+
 
     </div> <!-- /container -->
 
@@ -75,106 +149,34 @@
 
     <!-- script for customizing the content (Jumbotron contentDiv) -->
     <script>
-		var homeContentHtml = "<h1> Project Meat and Bone</h1> \
-    <h2>Goal</h2><p> \
-     In orthodontics and dentistry, devices such as Haas appliances and partial dentures apply pressure to the bone inside the mouth. \
-     These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or an imprint in putty. \
-     Appliances made in this way are irritating to soft tissue, especially where the bone is close to the device. \
-     This project is designed to take the imprint, and adjust it based on the relative distance to the bone, making a more comfortable appliance. \
-     In the areas where the bone is close to the surface, the appliance must be pulled away from the soft tissue. \
-     Additionally, where the bone is far away from the surface, the contact surface must be pushed towards the bone to compensate for increased displacement of soft tissue. \
-     This method may also be used for other prosthesis.\
-     </p><p> \
-     The goal of this project is to find a way to calculate surfaces based on simple user specifications accomodating these biomechanical properties. \
-     More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface). \
-     The algorithm adjusts each point in the work surface based on the local distance to the reference surface. \
-     The result is thickened, then outputed as a 3d printable object file.</p> \
-     <h2>Technical Discussion</h2> <p>\
-      The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh. \
-      To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface. \
-      These displacements are calculated using the distance along the normal to the reference surface, according to the following graph, which uses the smoothstep function.</p> \
-        <img src =  'Graph.JPG' width =  '450'> \
-      <p>The modified surface is then transformed into a solid figure with beveled edges, \
-      ready to be 3d printed. \
-      </p><p>\
-      This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>";
-		var projectCodeContentHtml = "<a href = 'https://github.com/eklarlund/meat-and-bone.github.io'><p>Project Meat and Bone Code on Github.</p></a> \
-    <br><p>The code takes inputs as such: </p> <br> <p>.libmeat_and_bone_bin.exe &lt;work surface&GT; &lt;reference surface&GT; &lt;output file&GT; </p> <br>";
-    var imagesContentHtml = "<table > \
-      <th colspan='2'> <h2>An Example of Input </h2></th> \
-      <tr> \
-        <td colspan='2'> \
-          <img class='center-block' src =  '' Reference.JPG ' width =  '450'> \
-        </td> \
-      </tr> \
-      <tr> \
-        <td> \
-          <img src =  'Work.JPG' width =  '450'> \
-        </td> \
-        <td> \
-          <p>This is the work surface, cut from the model of soft tissue in the upper palette. </p> \
-        </td> \
-      </tr> \
-      <tr> \
-        <td> \
-          <img src =  ' Reference.JPG ' width =  '450'> \
-        </td> \
-        <td> \
-          <p>This is the reference. The distance from the work surface to the reference is used to adjust the work surface. \
-        </td> \
-      </tr> \
-      <th colspan='2'> <h2>An Example of Output</h2></th> \
-      <tr> \
-        <td> \
-          <img src =  ' Final.JPG ' width =  '450'> \
-        </td> \
-        <td> \
-          <p>This is the final product, the work surface has been adjusted to account for bony potrusions that would otherwise be uncomfortable, and made into a solid with beveled edges. \
-        </td> \
-      </tr> \
-      <tr> \
-        <td> \
-          <img src =  ' Compare.JPG ' width =  '450'> \
-        </td> \
-        <td> \
-          <p>A comparison of the initial work surface and the final product. The lighter grey surface is the final. \
-        </td> \
-      </tr> \
-    </table>";
-		var contactContentHtml = "<p>You can reach me at: esbenklarlund@gmail.com</p>";
 
 		$(function() {
-    		$( "#contentDiv" ).html(homeContentHtml);
+      displaySection( "#homeLink", "#homeContentDiv")
   		});
 
-		$( "#homeLink" ).click(function() {
-			$( "#homeLink" ).addClass( "active" );
-			$( "#projectCodeLink" ).removeClass( "active" );
-      $( "#imagesLink" ).removeClass( "active" );
-			$( "#contactLink").removeClass( "active" );
-			$( "#contentDiv" ).html(homeContentHtml);
-		});
-		$( "#projectCodeLink" ).click(function() {
-			$( "#projectCodeLink" ).addClass( "active" );
-			$( "#homeLink" ).removeClass( "active" );
-      $( "#imagesLink" ).removeClass( "active" );
-			$( "#contactLink").removeClass( "active" );
-			$( "#contentDiv" ).html(projectCodeContentHtml);
-		});
+      var sectionLinks = ["#homeLink", "#projectCodeLink", "#imagesLink", "#contactLink"];
+      var sectionContents = ["#homeContentDiv", "#projectCodeContentDiv", "#imagesContentDiv", "#contactContentDiv"];
+
+    function displaySection(sectionLink, sectionContent){
+      for(i = 0; i < sectionLinks.length; i++){
+        $( sectionLinks[i] ).removeClass( "active" );
+        $( sectionContents[i] ).hide();
+      }
+      $( sectionLink ).addClass( "active" );
+      $( sectionContent ).show();
+    }
+    $( "#homeLink" ).click(function() {
+      displaySection( "#homeLink", "#homeContentDiv")
+    });
+    $( "#projectCodeLink" ).click(function() {
+      displaySection( "#projectCodeLink", "#projectCodeContentDiv")
+    });
     $( "#imagesLink" ).click(function() {
-			$( "#imagesLink" ).addClass( "active" );
-			$( "#projectCodeLink" ).removeClass( "active" );
-			$( "#homeLink" ).removeClass( "active" );
-      $( "#contactLink" ).removeClass( "active" );
-			$( "#contentDiv" ).html(imagesContentHtml);
-		});
-		$( "#contactLink" ).click(function() {
-			$( "#contactLink" ).addClass( "active" );
-			$( "#projectCodeLink" ).removeClass( "active" );
-			$( "#homeLink" ).removeClass( "active" );
-      $( "#imagesLink" ).removeClass( "active" );
-			$( "#contentDiv" ).html(contactContentHtml);
-		});
+      displaySection( "#imagesLink", "#imagesContentDiv")
+    });
+    $( "#contactLink" ).click(function() {
+      displaySection( "#contactLink", "#contactContentDiv")
+    });
 
 	</script>
   </body>

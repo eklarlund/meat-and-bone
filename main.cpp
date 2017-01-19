@@ -55,10 +55,7 @@ void show_result(Eigen::MatrixXd V1, Eigen::MatrixXi F1, Eigen::MatrixXd V2, Eig
 }
 static void show_usage(string name)
 {
-	cerr << "Usage: " << name << " <option(s)> WORKSURFACE REFSURFACE RESSURFACE"
-		<< "Options:\n"
-		<< "\t-h,--help\t\tShow this help message\n"
-		<< "\t-s,--scale SCALEFACTOR\tSpecify the scaling, default = 1"
+	cerr << "Usage: " << name << " WORKSURFACE REFSURFACE RESSURFACE"
 		<< endl;
 }
 

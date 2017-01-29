@@ -1,5 +1,5 @@
 ## General
-<a href = "https://eklarlund.github.io/meat-and-bone.github.io/"> This is a library of geometric routines for adressing biomechanical properties related to orthopedic devices and their interaction with soft tissue and bone--- or how to reduce chafing.</a>
+<a href = "https://eklarlund.github.io/meat-and-bone.github.io/"> This is a library of geometric routines for adressing biomechanical properties related to orthopedic devices and their interaction with soft tissue and bone--- or in plain language, how to reduce chafing.</a>
 
 ## How to use it
 Prerequisites are <a href = "https://cmake.org/"> Cmake</a> and <a href = "https://github.com/libigl/libigl"> libigl </a>. The test unit test program uses <a href = "https://github.com/philsquared/Catch"> catch</a>, which is included with the project.

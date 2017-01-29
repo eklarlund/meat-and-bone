@@ -1,3 +1,5 @@
+## General
+
 ## How to use it
 Prerequisites are <a href = "https://cmake.org/"> Cmake</a> and <a href = "https://github.com/libigl/libigl"> libigl </a>. The test unit test program uses <a href = "https://github.com/philsquared/Catch"> catch</a>, which is included with the project.
 

@@ -34,7 +34,6 @@ using namespace std;
 
 void show_result(Eigen::MatrixXd V1, Eigen::MatrixXi F1, Eigen::MatrixXd V2, Eigen::MatrixXi F2)
 {
-	//Viewer
 	std::cout << "\n\n-------------------Viewer--------------------\n\n";
 	// Concatenate (V1,F1) and (V2,F2) into (Vv,Fv)
 	Eigen::MatrixXd Vv(V1.rows() + V2.rows(), V1.cols());
@@ -53,6 +52,21 @@ void show_result(Eigen::MatrixXd V1, Eigen::MatrixXi F1, Eigen::MatrixXd V2, Eig
 	viewer.data.set_face_based(true);
 	viewer.launch();
 }
+
+void show_result2(Eigen::MatrixXd V, Eigen::MatrixXi F)
+{
+	std::cout << "\n\n-------------------Viewer2--------------------\n\n";
+	Eigen::MatrixXd Co(F.rows(), 3);
+	Co <<
+		Eigen::RowVector3d(0.2, 0.3, 0.8).replicate(F.rows(), 1);
+
+	igl::viewer::Viewer viewer2;
+	viewer2.data.set_mesh(V, F);
+	//viewer2.data.set_colors(Co);
+	//viewer2.data.set_face_based(true);
+	viewer2.launch();
+}
+
 static void show_usage(string name)
 {
 	cerr << "Usage: " << name << " WORKSURFACE REFSURFACE RESSURFACE"
@@ -99,6 +113,7 @@ int main(int argc, char* argv[])
 
 	CHECK(igl::read_triangle_mesh(ref_surface, V_ref, F_ref), "Read failure");
 	
+	show_result2(V, F);
 	Eigen::MatrixXd V_orig(V);
 	Eigen::MatrixXi F_orig(F);
 
@@ -130,8 +145,8 @@ int main(int argc, char* argv[])
 	std::cout << "\nhits: " << hits << "\nmisses: " << misses << endl;
 	igl::writeOBJ(res_surface, V_out, F_out);
 
-  // Eigen::MatrixXd V_plus_(V_out);
+   //Eigen::MatrixXd V_plus_(V_out);
    //Eigen::MatrixXi F_plus_(F_out);
-   show_result(V_out, F_out, V_orig, F_orig);
-  return 1;
+    //show_result(V_out, F_out, V_orig, F_orig);
+	return 1;
 }

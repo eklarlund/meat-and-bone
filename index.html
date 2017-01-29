@@ -49,7 +49,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active" id="homeLink"><a href="#">Home</a></li>
-            <li id="projectCodeLink"><a href="#projectCode" >Project Code</a></li>
+            <li id="discussionLink"><a href="#discussion" >Discussion</a></li>
             <li id="imagesLink"><a href="#images" >Images</a></li>
             <li id="contactLink"><a href="#contact" >Contact</a></li>
           </ul>
@@ -76,19 +76,22 @@
            More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface).
            The algorithm adjusts each point in the work surface based on the local distance to the reference surface.
            The result is thickened, then outputed as a 3d printable object file.</p>
-           <h2>Technical Discussion</h2> <p>
-            The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh.
-            To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface.
-            These displacements are calculated using the distance along the normal to the reference surface, according to the following graph, which uses the smoothstep function.</p>
-              <img src =  'Graph.JPG' width =  '450'>
-            <p>The modified surface is then transformed into a solid figure with beveled edges,
-            ready to be 3d printed.
-            </p><p>
+           <p>
             This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>
+            <a href = "https://github.com/eklarlund/meat-and-bone.github.io"><p>For the code and usage, Github link</p></a>
       </div>
-      <div id = "projectCodeContentDiv" style = "display: none">
-        <a href = 'https://github.com/eklarlund/meat-and-bone.github.io'><p>Project Meat and Bone Code on Github.</p></a>
-        <br><p>The code takes inputs as such: </p> <br> <p>.libmeat_and_bone_bin.exe &lt;work surface&GT; &lt;reference surface&GT; &lt;output file&GT; </p> <br>
+
+
+      <div id = "discussionContentDiv" style = "display: none">
+        <h2>Technical Discussion</h2> <p>
+         The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh.
+         To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface.
+         These displacements are calculated using the distance along the normal to the reference surface, according to the following graph, which uses the smoothstep function.
+        </p>
+        <img src =  'Graph.JPG' width =  '700'>
+        <p>The modified surface is then transformed into a solid figure with beveled edges,
+           ready to be 3d printed.
+       </p>
       </div>
 
 
@@ -154,8 +157,8 @@
       displaySection( "#homeLink", "#homeContentDiv")
   		});
 
-      var sectionLinks = ["#homeLink", "#projectCodeLink", "#imagesLink", "#contactLink"];
-      var sectionContents = ["#homeContentDiv", "#projectCodeContentDiv", "#imagesContentDiv", "#contactContentDiv"];
+      var sectionLinks = ["#homeLink", "#discussionLink", "#imagesLink", "#contactLink"];
+      var sectionContents = ["#homeContentDiv", "#discussionContentDiv", "#imagesContentDiv", "#contactContentDiv"];
 
     function displaySection(sectionLink, sectionContent){
       for(i = 0; i < sectionLinks.length; i++){
@@ -168,8 +171,8 @@
     $( "#homeLink" ).click(function() {
       displaySection( "#homeLink", "#homeContentDiv")
     });
-    $( "#projectCodeLink" ).click(function() {
-      displaySection( "#projectCodeLink", "#projectCodeContentDiv")
+    $( "#discussionLink" ).click(function() {
+      displaySection( "#discussionLink", "#discussionContentDiv")
     });
     $( "#imagesLink" ).click(function() {
       displaySection( "#imagesLink", "#imagesContentDiv")

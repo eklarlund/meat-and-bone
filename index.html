@@ -1,186 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Meat &amp; Bone</title>
+  <title>Meat &amp; Bone</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
-    <style>
-      td {
-          padding: 15px;
-      }
-  		body {
-    			min-height: 2000px;
-    			padding-top: 70px;
-  		}
-	</style>
+  <script type="text/javascript" src="./blah_files/x3dom.js.download"> </script>
+  <link rel="stylesheet" type="text/css" href="./blah_files/x3dom.css">
+  <style>
+  figure {
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+  }
+  figcaption {
+    margin: 10px 0 0 0;
+    font-family: Arial;
+    font-weight: bold;
+    background: #909090;
+  }
+  td {
+    padding: 15px;
+  }
+  body {
+    min-height: 2000px;
+    padding-top: 70px;
+  }
+  </style>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
 
-  <body>
+<body>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Meat &amp; Bone</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active" id="homeLink"><a href="#">Home</a></li>
-            <li id="discussionLink"><a href="#discussion" >Discussion</a></li>
-            <li id="imagesLink"><a href="#images" >Images</a></li>
-            <li id="contactLink"><a href="#contact" >Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Meat &amp; Bone</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active" id="homeLink"><a href="#">Home</a></li>
+          <li id="discussionLink"><a href="#discussion" >Discussion</a></li>
+          <li id="imagesLink"><a href="#images" >Images</a></li>
+          <li id="contactLink"><a href="#contact" >Contact</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
 
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron" id="contentDiv">
-        <div id = "homeContentDiv">
-          <h1> Project Meat and Bone</h1>
+  <div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron" id="contentDiv">
+      <div id = "homeContentDiv">
+        <h1> Project Meat and Bone</h1>
+        <figure>
+          <x3d width="800px" height="300px">
+            <scene render="true" bboxcenter="0,0,0" bboxsize="-1,-1,-1" pickmode="idBuf" dopickpass="true">
+              <inline url="sagital cut.x3d" render="true" bboxcenter="0,0,0" bboxsize="-1,-1,-1" load="true" namespacename=""></inline>
+            </scene>
+            <figcaption>Interactive! Click to rotate. <br>The <span style = "color: white;">white</span> surface is the bone, the <span style = "color: red;">red</span> is the meat, and the <span style = "color: green;">green</span> is the calculated surface, optimized for comfort.</figcaption>
+          </figure>
+          <p>
+            This project is a library of routines, designed to create 3d printable contactic surfaces for othodontic and orthopedic devices.
+            This project interploates surfaces based on soft tissue thickness, creates beveled edges to reduce chafing, and makes solids for printing or further CAD work.
+          </p>
+
+        </div>
+
+
+        <div id = "discussionContentDiv" style = "display: none">
           <h2>Goal</h2><p>
-           In orthodontics and dentistry, devices such as Haas appliances and partial dentures apply pressure to the soft tissue inside the mouth.
-           These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or an imprint in putty.
-           Appliances made in this way are irritating to soft tissue, especially where the bone is close to the device.
-           This project is designed to take the imprint, and adjust it based on the relative distance to the bone, making a more comfortable appliance.
-           In the areas where the bone is close to the surface, the appliance must be pulled away from the soft tissue.
-           Additionally, where the bone is far away from the surface, the contact surface must be pushed towards the bone to compensate for increased displacement of soft tissue.
-           This method may also be used for other prosthesis.
-           </p><p>
-           The goal of this project is to find a way to calculate surfaces based on simple user specifications accomodating these biomechanical properties.
-           More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface).
-           The algorithm adjusts each point in the work surface based on the local distance to the reference surface.
-           The result is thickened, then outputed as a 3d printable object file.</p>
-           <p>
-            This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>
-            <a href = "https://github.com/eklarlund/meat-and-bone.github.io"><p>For the code and usage, Github link</p></a>
-      </div>
+            In orthodontics and dentistry, devices such as palate appliances and partial dentures may apply pressure to the soft tissue inside the mouth.
+            These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or an imprint in putty.
+            Appliances made in this way are irritating to soft tissue, especially where the bone is close to the device.
+            This project is designed to take the imprint, and adjust it based on the relative distance to the bone, making a more comfortable appliance.
+            In the areas where the bone is close to the surface, the appliance must be pulled away from the soft tissue.
+            Additionally, where the bone is far away from the surface, the contact surface must be pushed towards the bone to compensate for increased displacement of soft tissue.
+            This method may also be used for other prosthesis.
+          </p><p>
+            The goal of this project is to find a way to calculate surfaces based on simple user specifications accomodating these biomechanical properties.
+            More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface).
+            The algorithm adjusts each point in the work surface based on the local distance to the reference surface.
+            The result is thickened, then outputed as a 3d printable object file.</p>
+            <p>
+              This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>
+              <a href = "https://github.com/eklarlund/meat-and-bone.github.io"><p>For the code and usage, Github link</p></a>
+              <h2>Technical Discussion</h2>
+              <img src = "coronal.png" width = '700'>
+              <p>
+                The white surface is the bone, the red is the surface of the soft tissue, and the green is the calculated surface, the contact surface of the device.
+                The algorithm looks at each point of the red surface, and finds the thickness of the soft tissue, based on the distance to the white surface.
+                It then calcuates a displacement, a negative displacement moves the green surface away from the bone, a positive displacement moves the green surface towards the bone.
+                In our approach, we use just four values to specify the green surface: minimum and maximum thicknesses and  displacements.
+                Then, if the thickness is less than the minimum thickness, then the green surface follows the red surface, but is apart by the  minimum displacement.
+                If the thickness is more than the maximum thickness, then the green surface follows the red surface, but is apart by the maximum displacement.
+                If the thickness is between minimum and maximum thickness, then the green surface is displaced according to an interpolation:
+              </p>
+              <img src =  'Graph.JPG' width =  '700'>
+              <p>The modified surface is then transformed into a solid figure with beveled edges,
+                ready to be 3d printed.
+              </p>
+            </div>
 
 
-      <div id = "discussionContentDiv" style = "display: none">
-        <h2>Technical Discussion</h2> <p>
-         The algorithm takes the work surface, represented as a triangle mesh, and modifies it based on the reference surface, also a triangle mesh.
-         To create an output that preserves the details of the work surface, we displace its vertices along their normal vectors based on the distance to the reference surface.
-         These displacements are calculated using the distance along the normal to the reference surface, according to the following graph, which uses the smoothstep function.
-        </p>
-        <img src =  'Graph.JPG' width =  '700'>
-        <p>The modified surface is then transformed into a solid figure with beveled edges,
-           ready to be 3d printed.
-       </p>
-      </div>
+            <div id = "imagesContentDiv" style = "display: none">
+              <table >
+                <th colspan='2'> <h2>An Example of Input </h2></th>
+                <tr>
+                  <td>
+                    <img src =  'Work.JPG' width =  '450'>
+                  </td>
+                  <td>
+                    <p>This is the work surface, cut from the model of soft tissue in the upper palette. </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img src =  ' Reference.JPG ' width =  '450'>
+                  </td>
+                  <td>
+                    <p>This is the reference. The distance from the work surface to the reference is used to adjust the work surface.
+                    </td>
+                  </tr>
+                  <th colspan='2'> <h2>An Example of Output</h2></th>
+                  <tr>
+                    <td>
+                      <img src =  ' Final.JPG ' width =  '450'>
+                    </td>
+                    <td>
+                      <p>This is the final product, the work surface has been adjusted to account for bony potrusions that would otherwise be uncomfortable, and made into a solid with beveled edges.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src =  ' Compare.JPG ' width =  '450'>
+                      </td>
+                      <td>
+                        <p>A comparison of the initial work surface and the final product. The lighter grey surface is the final.
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
 
 
-      <div id = "imagesContentDiv" style = "display: none">
-        <table >
-          <th colspan='2'> <h2>An Example of Input </h2></th>
-          <tr>
-            <td>
-              <img src =  'Work.JPG' width =  '450'>
-            </td>
-            <td>
-              <p>This is the work surface, cut from the model of soft tissue in the upper palette. </p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src =  ' Reference.JPG ' width =  '450'>
-            </td>
-            <td>
-              <p>This is the reference. The distance from the work surface to the reference is used to adjust the work surface.
-            </td>
-          </tr>
-          <th colspan='2'> <h2>An Example of Output</h2></th>
-          <tr>
-            <td>
-              <img src =  ' Final.JPG ' width =  '450'>
-            </td>
-            <td>
-              <p>This is the final product, the work surface has been adjusted to account for bony potrusions that would otherwise be uncomfortable, and made into a solid with beveled edges.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src =  ' Compare.JPG ' width =  '450'>
-            </td>
-            <td>
-              <p>A comparison of the initial work surface and the final product. The lighter grey surface is the final.
-            </td>
-          </tr>
-        </table>
-      </div>
+                  <div id = "contactContentDiv" style = "display: none">
+                    <p>You can reach me at: esbenklarlund@gmail.com</p>
+                  </div>
 
 
-      <div id = "contactContentDiv" style = "display: none">
-          <p>You can reach me at: esbenklarlund@gmail.com</p>
-      </div>
+                </div> <!-- /container -->
 
 
-    </div> <!-- /container -->
+                <!-- Bootstrap core JavaScript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+                <!-- script for customizing the content (Jumbotron contentDiv) -->
+                <script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                $(function() {
+                  displaySection( "#homeLink", "#homeContentDiv")
+                });
 
-    <!-- script for customizing the content (Jumbotron contentDiv) -->
-    <script>
+                var sectionLinks = ["#homeLink", "#discussionLink", "#imagesLink", "#contactLink"];
+                var sectionContents = ["#homeContentDiv", "#discussionContentDiv", "#imagesContentDiv", "#contactContentDiv"];
 
-		$(function() {
-      displaySection( "#homeLink", "#homeContentDiv")
-  		});
+                function displaySection(sectionLink, sectionContent){
+                  for(i = 0; i < sectionLinks.length; i++){
+                    $( sectionLinks[i] ).removeClass( "active" );
+                    $( sectionContents[i] ).hide();
+                  }
+                  $( sectionLink ).addClass( "active" );
+                  $( sectionContent ).show();
+                }
+                $( "#homeLink" ).click(function() {
+                  displaySection( "#homeLink", "#homeContentDiv")
+                });
+                $( "#discussionLink" ).click(function() {
+                  displaySection( "#discussionLink", "#discussionContentDiv")
+                });
+                $( "#imagesLink" ).click(function() {
+                  displaySection( "#imagesLink", "#imagesContentDiv")
+                });
+                $( "#contactLink" ).click(function() {
+                  displaySection( "#contactLink", "#contactContentDiv")
+                });
 
-      var sectionLinks = ["#homeLink", "#discussionLink", "#imagesLink", "#contactLink"];
-      var sectionContents = ["#homeContentDiv", "#discussionContentDiv", "#imagesContentDiv", "#contactContentDiv"];
-
-    function displaySection(sectionLink, sectionContent){
-      for(i = 0; i < sectionLinks.length; i++){
-        $( sectionLinks[i] ).removeClass( "active" );
-        $( sectionContents[i] ).hide();
-      }
-      $( sectionLink ).addClass( "active" );
-      $( sectionContent ).show();
-    }
-    $( "#homeLink" ).click(function() {
-      displaySection( "#homeLink", "#homeContentDiv")
-    });
-    $( "#discussionLink" ).click(function() {
-      displaySection( "#discussionLink", "#discussionContentDiv")
-    });
-    $( "#imagesLink" ).click(function() {
-      displaySection( "#imagesLink", "#imagesContentDiv")
-    });
-    $( "#contactLink" ).click(function() {
-      displaySection( "#contactLink", "#contactContentDiv")
-    });
-
-	</script>
-  </body>
-</html>
+                </script>
+              </body>
+              </html>

@@ -62,7 +62,6 @@
         <ul class="nav navbar-nav">
           <li class="active" id="homeLink"><a href="#">Home</a></li>
           <li id="discussionLink"><a href="#discussion" >Discussion</a></li>
-          <li id="imagesLink"><a href="#images" >Images</a></li>
           <li id="contactLink"><a href="#contact" >Contact</a></li>
         </ul>
       </div><!--/.nav-collapse -->
@@ -83,8 +82,8 @@
             <figcaption>Interactive! Click to rotate. <br>The <span style = "color: white;">white</span> surface is the bone, the <span style = "color: red;">red</span> is the meat, and the <span style = "color: green;">green</span> is the calculated surface, optimized for comfort.</figcaption>
           </figure>
           <p>
-            This project is a library of routines, designed to create 3d printable contactic surfaces for othodontic and orthopedic devices.
-            This project interploates surfaces based on soft tissue thickness, creates beveled edges to reduce chafing, and makes solids for printing or further CAD work.
+            This project is a library of routines, designed to create 3d printable contact surfaces for othodontic and orthopedic devices.
+            These routines interploates surfaces based on soft tissue thickness, creates beveled edges to reduce chafing, and makes solids for printing or further CAD work.
           </p>
 
         </div>
@@ -125,44 +124,7 @@
             </div>
 
 
-            <div id = "imagesContentDiv" style = "display: none">
-              <table >
-                <th colspan='2'> <h2>An Example of Input </h2></th>
-                <tr>
-                  <td>
-                    <img src =  'Work.JPG' width =  '450'>
-                  </td>
-                  <td>
-                    <p>This is the work surface, cut from the model of soft tissue in the upper palette. </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <img src =  ' Reference.JPG ' width =  '450'>
-                  </td>
-                  <td>
-                    <p>This is the reference. The distance from the work surface to the reference is used to adjust the work surface.
-                    </td>
-                  </tr>
-                  <th colspan='2'> <h2>An Example of Output</h2></th>
-                  <tr>
-                    <td>
-                      <img src =  ' Final.JPG ' width =  '450'>
-                    </td>
-                    <td>
-                      <p>This is the final product, the work surface has been adjusted to account for bony potrusions that would otherwise be uncomfortable, and made into a solid with beveled edges.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img src =  ' Compare.JPG ' width =  '450'>
-                      </td>
-                      <td>
-                        <p>A comparison of the initial work surface and the final product. The lighter grey surface is the final.
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
+
 
 
                   <div id = "contactContentDiv" style = "display: none">
@@ -187,8 +149,8 @@
                   displaySection( "#homeLink", "#homeContentDiv")
                 });
 
-                var sectionLinks = ["#homeLink", "#discussionLink", "#imagesLink", "#contactLink"];
-                var sectionContents = ["#homeContentDiv", "#discussionContentDiv", "#imagesContentDiv", "#contactContentDiv"];
+                var sectionLinks = ["#homeLink", "#discussionLink",  "#contactLink"];
+                var sectionContents = ["#homeContentDiv", "#discussionContentDiv",  "#contactContentDiv"];
 
                 function displaySection(sectionLink, sectionContent){
                   for(i = 0; i < sectionLinks.length; i++){
@@ -203,9 +165,6 @@
                 });
                 $( "#discussionLink" ).click(function() {
                   displaySection( "#discussionLink", "#discussionContentDiv")
-                });
-                $( "#imagesLink" ).click(function() {
-                  displaySection( "#imagesLink", "#imagesContentDiv")
                 });
                 $( "#contactLink" ).click(function() {
                   displaySection( "#contactLink", "#contactContentDiv")

@@ -86,7 +86,9 @@
             This project is a library of routines, designed to create 3d printable contact surfaces for othodontic and orthopedic devices.
             These routines interploate surfaces based on soft tissue thickness, create beveled edges to reduce chafing, and make solids for printing or further CAD work.
           </p>
-          <a href = "https://github.com/eklarlund/meat-and-bone.github.io"><p>For the code and usage, Github link</p></a>
+          <p>
+            This project uses <a href = "http://libigl.github.io/libigl/">libigl</a>, a C++ geometry processing library.</p>
+          <p>For the code and usage, see <a href = "https://github.com/eklarlund/meat-and-bone.github.io">Github link</a></p>
 
 
         </div>
@@ -105,8 +107,7 @@
             More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface).
             The algorithm adjusts each point in the work surface based on the local distance to the reference surface.
             The result is thickened, then outputed as a 3d printable object file.</p>
-            <p>
-              This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>
+
         </div>
 
         <div id = "discussionContentDiv" style = "display: none">

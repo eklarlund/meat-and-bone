@@ -95,18 +95,22 @@
 
         <div id = "goalContentDiv" style = "display: none">
           <h2>Goal</h2><p>
-            In orthodontics and dentistry, devices such as palate appliances and partial dentures may apply pressure to the soft tissue inside the mouth.
-            These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or an imprint in putty.
-            Appliances made in this way are irritating to soft tissue, especially where the bone is close to the device.
-            This project is designed to take the imprint, and adjust it based on the relative distance to the bone, making a more comfortable appliance.
-            In the areas where the bone is close to the surface, the appliance must be pulled away from the soft tissue.
-            Additionally, where the bone is far away from the surface, the contact surface must be pushed towards the bone to compensate for increased displacement of soft tissue.
-            This method may also be used for other prosthesis.
+            In dentistry, devices such as palate appliances and partial dentures may apply pressure to the soft tissue inside the mouth.
+            These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or by imprint in putty.
+            However, such appliances are often irritating to soft tissue.
+            Our goal is to make more comfortable appliances in a simple, automated way.
+            To do this, we adjust the surface, according to the thickness of the soft tissue.
+            In areas where the bone is close to the mucous membrane, the appliance surface must be pulled a little away from the soft tissue.
+            Also, where the bone is further away from the membrane, the surface must be pushed towards the bone to compensate for fluid displacement.
+            This method may also be used for other prostheses.
           </p><p>
-            The goal of this project is to find a way to calculate surfaces based on simple user specifications accomodating these biomechanical properties.
-            More concretely, the goal is to write an algorithm that takes two surfaces, a representation of the soft tissue (work surface), and a CT scan of the skull (reference surface).
+            We sugest simple user specifications accomodating these biomechanical properties.
+            We propose an algorithm that takes as input two surface meshes.
+            The first is a patch of the mucous membrane intersected with the appliance (work surface)
+            The second is a corresponding patch from a CT scan of the skull (reference surface).
             The algorithm adjusts each point in the work surface based on the local distance to the reference surface.
-            The result is thickened, then outputed as a 3d printable object file.</p>
+            Then, a beveled edge is computed.
+            Finally, the surface is turned into a solid mesh.</p>
 
         </div>
 

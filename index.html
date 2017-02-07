@@ -61,6 +61,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="active" id="homeLink"><a href="#">Home</a></li>
+            <li id="goalLink"><a href="#goal" >Goal</a></li>
           <li id="discussionLink"><a href="#discussion" >Discussion</a></li>
           <li id="contactLink"><a href="#contact" >Contact</a></li>
         </ul>
@@ -83,13 +84,14 @@
           </figure>
           <p>
             This project is a library of routines, designed to create 3d printable contact surfaces for othodontic and orthopedic devices.
-            These routines interploates surfaces based on soft tissue thickness, creates beveled edges to reduce chafing, and makes solids for printing or further CAD work.
+            These routines interploate surfaces based on soft tissue thickness, create beveled edges to reduce chafing, and make solids for printing or further CAD work.
           </p>
+          <a href = "https://github.com/eklarlund/meat-and-bone.github.io"><p>For the code and usage, Github link</p></a>
+
 
         </div>
 
-
-        <div id = "discussionContentDiv" style = "display: none">
+        <div>
           <h2>Goal</h2><p>
             In orthodontics and dentistry, devices such as palate appliances and partial dentures may apply pressure to the soft tissue inside the mouth.
             These devices are typically made by creating a model of the soft tissue of the mouth, either by laser scan or an imprint in putty.
@@ -105,7 +107,9 @@
             The result is thickened, then outputed as a 3d printable object file.</p>
             <p>
               This project uses libigl, a C++ geometry processing library. http://libigl.github.io/libigl/</p>
-              <a href = "https://github.com/eklarlund/meat-and-bone.github.io"><p>For the code and usage, Github link</p></a>
+        </div>
+
+        <div id = "discussionContentDiv" style = "display: none">
               <h2>Technical Discussion</h2>
               <img src = "coronal.png" width = '700'>
               <p>
@@ -149,8 +153,8 @@
                   displaySection( "#homeLink", "#homeContentDiv")
                 });
 
-                var sectionLinks = ["#homeLink", "#discussionLink",  "#contactLink"];
-                var sectionContents = ["#homeContentDiv", "#discussionContentDiv",  "#contactContentDiv"];
+                var sectionLinks = ["#homeLink", "#goalLink", "#discussionLink",  "#contactLink"];
+                var sectionContents = ["#homeContentDiv", "goalContentDiv", "#discussionContentDiv",  "#contactContentDiv"];
 
                 function displaySection(sectionLink, sectionContent){
                   for(i = 0; i < sectionLinks.length; i++){
@@ -162,6 +166,9 @@
                 }
                 $( "#homeLink" ).click(function() {
                   displaySection( "#homeLink", "#homeContentDiv")
+                });
+                $( "#goalLink" ).click(function() {
+                  displaySection( "#goalLink", "#goalContentDiv")
                 });
                 $( "#discussionLink" ).click(function() {
                   displaySection( "#discussionLink", "#discussionContentDiv")

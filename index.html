@@ -84,7 +84,7 @@
           </figure>
           <p>
             This project is a library of routines, designed to create 3d printable contact surfaces for orthodontic and orthopedic devices.
-            These routines interploate surfaces based on soft tissue thickness, create beveled edges to reduce chafing, and make solids for printing or further CAD work.
+            These routines interpolate surfaces based on soft tissue thickness, create beveled edges to reduce chafing, and make solids for printing or further CAD work.
           </p>
           <p>
             This project uses <a href = "http://libigl.github.io/libigl/">libigl</a>, a C++ geometry processing library.</p>
@@ -104,7 +104,7 @@
             Also, where the bone is further away from the membrane, the surface must be pushed towards the bone to compensate for fluid displacement.
             This method may also be used for other prostheses.
           </p><p>
-            We sugest simple user specifications accomodating these biomechanical properties.
+            We suggest simple user specifications accommodating these biomechanical properties.
             We propose an algorithm that takes as input two surface meshes.
             The first is a patch of the mucous membrane intersected with the appliance (work surface)
             The second is a corresponding patch from a CT scan of the skull (reference surface).
@@ -120,7 +120,7 @@
               <p>
                 The white surface is the bone, the red is the surface of the soft tissue, and the green is the calculated surface, the contact surface of the device.
                 The algorithm looks at each point of the red surface, and finds the thickness of the soft tissue, based on the distance to the white surface.
-                It then calcuates a displacement, a negative displacement moves the green surface away from the bone, a positive displacement moves the green surface towards the bone.
+                It then calculates a displacement, a negative displacement moves the green surface away from the bone, a positive displacement moves the green surface towards the bone.
                 In our approach, we use just four values to specify the green surface: minimum and maximum thicknesses and  displacements.
                 Then, if the thickness is less than the minimum thickness, then the green surface follows the red surface, but is apart by the  minimum displacement.
                 If the thickness is more than the maximum thickness, then the green surface follows the red surface, but is apart by the maximum displacement.
@@ -184,4 +184,5 @@
 
                 </script>
               </body>
-              </html>
+
+    </html>

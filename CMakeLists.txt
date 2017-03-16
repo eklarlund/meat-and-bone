@@ -1,69 +1,81 @@
-cmake_minimum_required(VERSION 2.8.12)
+###################################################################
+# The following code is modified from: https://github.com/libigl/libigl-example-project/blob/master/CMakeLists.txt
+# Per 3/14/2017
+#This code may need to be updated as libigl evolves
+
+cmake_minimum_required(VERSION 2.6)
 project(libmeat_and_bone)
 
-set(LIBIGL_LOCATION "${PROJECT_SOURCE_DIR}/../libigl/"
-    CACHE FILEPATH "Location of libIGL")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+find_package(LIBIGL QUIET)
+
+if (NOT LIBIGL_FOUND)
+   message(FATAL_ERROR "libigl not found --- You can download it using: \n git clone --recursive https://github.com/libigl/libigl.git ${PROJECT_SOURCE_DIR}/../libigl")
+endif()
+
+# Compilation flags: adapt to your needs 
+if(MSVC)
+  # Enable parallel compilation
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /bigobj") 
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR} )
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR} )
+else()
+  # Libigl requires a modern C++ compiler that supports c++11
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11") 
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "." )
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+endif()
 
 
-### libIGL options: choose between header only and compiled static library
+
+# libigl options: choose between header only and compiled static library
+# Header-only is preferred for small projects. For larger projects the static build
+# considerably reduces the compilation times
 option(LIBIGL_USE_STATIC_LIBRARY "Use LibIGL as static library" ON)
-option(LIBIGL_WITH_VIEWER      "Use OpenGL viewer"  ON)
+
+# add a customizable menu bar
 option(LIBIGL_WITH_NANOGUI     "Use Nanogui menu"   OFF)
 
-### libIGL options: choose your dependencies (by default everything is OFF, in this example we need the viewer) ###
-option(LIBIGL_WITH_BBW              "Use BBW"            ON)
-find_package(CGAL QUIET)
-option(LIBIGL_WITH_CGAL             "Use CGAL"           "${CGAL_FOUND}")
-option(LIBIGL_WITH_COMISO           "Use CoMiso"         ON)
-option(LIBIGL_WITH_CORK             "Use CORK"           OFF)
-option(LIBIGL_WITH_EMBREE           "Use Embree"         ON)
-option(LIBIGL_WITH_LIM              "Use LIM"            ON)
-find_package(MATLAB QUIET)
-option(LIBIGL_WITH_MATLAB           "Use Matlab"         "${MATLAB_FOUND}")
-option(LIBIGL_WITH_MOSEK            "Use MOSEK"          "${MOSEK_FOUND}")
-option(LIBIGL_WITH_OPENGL           "Use OpenGL"         ON)
-option(LIBIGL_WITH_PNG              "Use PNG"            ON)
-option(LIBIGL_WITH_TETGEN           "Use Tetgen"         ON)
-option(LIBIGL_WITH_TRIANGLE         "Use Triangle"       ON)
-option(LIBIGL_WITH_XML              "Use XML"            ON)
-### End   to be tested ----
-
-### libIGL options: decide if you want to use the functionalities that depends on cgal
-if(LIBIGL_WITH_CGAL) # Do not remove or move this block, cgal strange build system fails without it
+# libigl options: choose your dependencies (by default everything is OFF except opengl) 
+option(LIBIGL_WITH_VIEWER      "Use OpenGL viewer"  ON)
+option(LIBIGL_WITH_OPENGL      "Use OpenGL"         ON)
+option(LIBIGL_WITH_OPENGL_GLFW "Use GLFW"           ON)
+option(LIBIGL_WITH_BBW         "Use BBW"            OFF)
+option(LIBIGL_WITH_EMBREE      "Use Embree"         ON)
+option(LIBIGL_WITH_PNG         "Use PNG"            OFF)
+option(LIBIGL_WITH_TETGEN      "Use Tetgen"         OFF)
+option(LIBIGL_WITH_TRIANGLE    "Use Triangle"       ON)
+option(LIBIGL_WITH_XML         "Use XML"            OFF)
+option(LIBIGL_WITH_LIM         "Use LIM"            OFF)
+option(LIBIGL_WITH_COMISO      "Use CoMiso"         OFF)
+option(LIBIGL_WITH_MATLAB      "Use Matlab"         OFF) # This option is not supported yet
+option(LIBIGL_WITH_MOSEK       "Use MOSEK"          OFF) # This option is not supported yet
+option(LIBIGL_WITH_CGAL        "Use CGAL"           OFF)
+if(LIBIGL_WITH_CGAL) # Do not remove or move this block, the cgal build system fails without it
   find_package(CGAL REQUIRED)
   set(CGAL_DONT_OVERRIDE_CMAKE_FLAGS TRUE CACHE BOOL "CGAL's CMAKE Setup is super annoying ")
   include(${CGAL_USE_FILE})
 endif()
 
-### Adding libIGL: choose the path to your local copy libIGL ###
-### This is going to compile everything you requested ###
-add_subdirectory("${LIBIGL_LOCATION}/shared/cmake" "libigl")
+# Adding libigl: choose the path to your local copy libigl 
+# This is going to compile everything you requested 
+#message(FATAL_ERROR "${PROJECT_SOURCE_DIR}/../libigl/cmake")
+add_subdirectory("${LIBIGL_INCLUDE_DIR}/../shared/cmake" "libigl")
 
+# libigl information 
+message("libigl includes: ${LIBIGL_INCLUDE_DIRS}")
+message("libigl libraries: ${LIBIGL_LIBRARIES}")
+message("libigl extra sources: ${LIBIGL_EXTRA_SOURCES}")
+message("libigl extra libraries: ${LIBIGL_EXTRA_LIBRARIES}")
+message("libigl definitions: ${LIBIGL_DEFINITIONS}")
 
-### Output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
-
-### Compilation flags: adapt to your needs ###
-if(MSVC)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /bigobj") ### Enable parallel compilation
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR} )
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR} )
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /w") # disable all warnings (not ideal but...)
-else()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11") #### Libigl requires a modern C++ compiler that supports c++11
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../" )
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w") # disable all warnings (not ideal but...)
-endif()
-
-
-
+# Prepare the build environment
 include_directories(${LIBIGL_INCLUDE_DIRS})
 add_definitions(${LIBIGL_DEFINITIONS})
 
-
 ########
+# THIS IS HOW MEAT-AND-BONE EXECUTABLES AND LIBRARY ARE COMPILED
 
 # SOURCES
 

@@ -40,19 +40,28 @@ bool make_solid(
 		F_out << F, (F_new.array() + V.rows());
 	else
 		F_out << F_new, (F.array() + V.rows());
-	
+
 	int f_curr = F_out.rows();
-	F_out.conservativeResize(f_curr + 2*num_border_v, F_out.cols());
+	F_out.conservativeResize(f_curr + 2 * num_border_v, F_out.cols());
 	const int V_n = V.rows();
 
-	for (int i = 0; i < num_border_v; i++) {
+	for (int i = 0; i < num_border_v; i++)
+	{
 		int next_i = (i + 1) % num_border_v;
-		Eigen::Vector3i new_face_1(borderLoop(next_i), borderLoop(i), borderLoop(i) + n);
-		Eigen::Vector3i new_face_2(borderLoop(next_i) + n, borderLoop(next_i), borderLoop(i) + n);
+		Eigen::Vector3i new_face_1, new_face_2;
+		if (offset > 0)
+		{
+			new_face_1 = Eigen::Vector3i(borderLoop(next_i), borderLoop(i), borderLoop(i) + n);
+			new_face_2 = Eigen::Vector3i(borderLoop(next_i) + n, borderLoop(next_i), borderLoop(i) + n);
+		}
+		else
+		{
+			new_face_1 = Eigen::Vector3i(borderLoop(i) + n, borderLoop(i), borderLoop(next_i));
+			new_face_2 = Eigen::Vector3i(borderLoop(i) + n, borderLoop(next_i), borderLoop(next_i) + n);
+		}
 		F_out.row(f_curr++) = new_face_1;
 		F_out.row(f_curr++) = new_face_2;
 	}
-
 	return 1;
 }
 

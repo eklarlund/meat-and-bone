@@ -21,10 +21,9 @@
 
 #define CHECK(expression, ...) (void)(                                                  \
              expression ||                                                              \
-             (std::cerr << "FAIL! " << std::string(##__VA_ARGS__) << "\n" << (__FILE__) <<  \
+             (std::cerr << "FAIL! " << std::string(__VA_ARGS__) << "\n" << (__FILE__) <<  \
 				", line: " << (unsigned)(__LINE__) << "\n"                              \
 	         << "EXPECTED: " << #expression << std::endl, std::abort));
-
 
 double smoothF = 1; //Smoothing factor
 double ymin=-.2, ymax=.3, xmin=3, xmax=4.2; 

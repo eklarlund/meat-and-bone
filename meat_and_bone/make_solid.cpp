@@ -1,5 +1,6 @@
 //#include <Eigen/core>
 #include "laplace_smooth.h"
+#include "make_solid.h"
 #include <iostream>
 
 using namespace std;

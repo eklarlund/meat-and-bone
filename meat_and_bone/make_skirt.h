@@ -10,62 +10,41 @@
 #include <Eigen/Core>
 #include <vector>
 
-
 // Smooth vertex attributes using uniform Laplacian
 // Inputs:
 //   Ain  #V by #A eigen Matrix of mesh vertex attributes (each vertex has #A attributes)
 //   F    #F by 3 eigne Matrix of face (triangle) indices
 // Output:
 //   Aout #V by #A eigen Matrix of mesh vertex attributes
+
 using namespace std;
 
-
 bool make_skirt(
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
-	const Eigen::MatrixXd & N_smooth,
+	const Eigen::MatrixXd & borderNormals,
+	const Eigen::MatrixXd & borderBitangents,
 	Eigen::MatrixXd & V_plus,
 	Eigen::MatrixXi & F_plus,
-	const int skirts,
-	const double displacement,
-	const double offset,
-	const double drop);
-
-bool make_skirt(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::MatrixXd & N_smooth,
-	Eigen::MatrixXd & V_plus,
-	Eigen::MatrixXi & F_plus,
-	Eigen::VectorXi & borderLoop_out,
+	Eigen::VectorXi & borderLoop,
 	const int skirts,
 	const double displacement,
 	const double offset,
 	const double drop
 );
 
-
-bool explore_border_loop(
-	const Eigen::MatrixXd &V,
-	const Eigen::MatrixXi &F,
-	const Eigen::MatrixXd &Normals,
-	Eigen::VectorXi & borderStatus,
-	const  vector< vector<int>> adj,
-	Eigen::VectorXi & borderLoop,
-	Eigen::MatrixXd & bitangent,
-	const int v_border_1st);
-
-int locate_borders(
-	const vector<vector<int>> adj,
-	const Eigen::VectorXi & adjTriangles,
-	const int n,
-	Eigen::VectorXi & borderStatus,
-	int & v_border_1st);
-
-void find_adj_faces(
+bool make_skirt(
+	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
-	Eigen::VectorXi & adjTriangles);
-
+	const Eigen::MatrixXd & N,
+	Eigen::MatrixXd & V_plus,
+	Eigen::MatrixXi & F_plus,
+	Eigen::VectorXi & borderLoop,
+	const int skirts,
+	const double displacement,
+	const double offset,
+	const double drop
+);
 
 void make_bitangents(
 	const Eigen::MatrixXd & V,
@@ -75,28 +54,21 @@ void make_bitangents(
 	Eigen::MatrixXd & bitangent);
 
 void add_skirt_layer(
-	const int n,
-	int f_curr,
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
-	const Eigen::MatrixXd & bitangent,
 	const Eigen::VectorXi & borderLoop,
-	const Eigen::VectorXi & borderLoop_orig,
-	const Eigen::MatrixXd & N_smooth,
-	Eigen::MatrixXd & V_plus,
-	Eigen::MatrixXi & F_plus,
+	const Eigen::MatrixXd & borderNormals,
+	const Eigen::MatrixXd & borderBitangents,
 	const double delta_norm,
-	const double delta_bitan);
+	const double delta_bitan,
+	Eigen::MatrixXd & V_plus,
+	Eigen::MatrixXi & F_plus
+);
 
 bool norms_are_oriented(
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
 	const Eigen::MatrixXd & bitangent,
 	const Eigen::VectorXi & borderLoop);
-
-
-#ifndef IGL_STATIC_LIBRARY
-#  include "skirt.cpp"
-#endif
 
 #endif

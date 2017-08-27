@@ -32,7 +32,7 @@ bool make_solid(
 
 
 #ifndef IGL_STATIC_LIBRARY
-#  include "thicken.cpp"
+#  include "make_solid.cpp"
 #endif
 
 #endif

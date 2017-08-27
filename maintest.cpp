@@ -13,11 +13,9 @@
 #include <igl/vertex_triangle_adjacency.cpp>
 #include <igl/viewer/Viewer.h>
 #include <igl/writeOBJ.h>
-#include <igl/boundary_loop.h>
-
 
 #include <meat_and_bone/interpolate.h>
-#include <meat_and_bone/make_solid.h>
+#include <meat_and_bone/thicken.h>
 #include <meat_and_bone/make_skirt.h>
 #include <meat_and_bone/laplace_smooth.h>
 
@@ -114,6 +112,7 @@ int main(int argc, char* argv[])
 
 	CHECK(igl::read_triangle_mesh(ref_surface, V_ref, F_ref), "Read failure");
 	
+	show_result2(V, F);
 	Eigen::MatrixXd V_orig(V);
 	Eigen::MatrixXi F_orig(F);
 
@@ -132,16 +131,10 @@ int main(int argc, char* argv[])
 
 	igl::writeOBJ("../displaced_surface", V, F);
 
-	std::vector<std::vector<int>> borderLoops; //vector of ordered lists of border vertices
+	std::vector<std::vector<int>> borderLoop; //border Vertices ordered in a loop
 	Eigen::MatrixXd V_plus;
 	Eigen::MatrixXi F_plus;
-	int borderId = 0;
 
-	igl::boundary_loop(F, borderLoops);
-	Eigen::VectorXi borderLoop(borderLoops[borderId].size());
-	for(int i = 0; i < borderLoops[borderId].size(); i++){
-		borderLoop(i) = borderLoops[borderId][i];
-	}
 	CHECK(make_skirt(V, F, N_smooth, V_plus, F_plus, borderLoop, 4, displacement, offset, drop), "Make Skirt Error");
 	
 	Eigen::MatrixXd V_out;
@@ -149,8 +142,6 @@ int main(int argc, char* argv[])
 	CHECK(make_solid(V_plus,F_plus, borderLoop, V_out, F_out, solid_smooth, thickness));
 
 	std::cout << "\nhits: " << hits << "\nmisses: " << misses << endl;
-
-	show_result2(V_out, F_out);
 	igl::writeOBJ(res_surface, V_out, F_out);
 
    //Eigen::MatrixXd V_plus_(V_out);

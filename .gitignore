@@ -13,6 +13,7 @@ build/
 
 # ignore visual studio code
 .vscode/
+.vs/
 
 # Windows Installer files
 *.cab

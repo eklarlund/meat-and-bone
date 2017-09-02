@@ -14,13 +14,14 @@
 #include <igl/ray_mesh_intersect.cpp>
 
 using namespace std;
+template <typename DerivedV, typename DerivedN, typename DerivedV_ref, typename DerivedF_ref, typename DerivedD>
 
 void find_distance(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXd & N_smooth,
-	const Eigen::MatrixXd & V_ref,
-	const Eigen::MatrixXi & F_ref,
-	Eigen::VectorXd & distances, 
+	const Eigen::MatrixBase<DerivedV> & V,
+	const Eigen::MatrixBase<DerivedN> & N_smooth,
+	const Eigen::MatrixBase<DerivedV_ref> & V_ref,
+	const Eigen::MatrixBase<DerivedF_ref> & F_ref,
+	Eigen::MatrixBase<DerivedD> & distances,
 	int & hits,
 	int & misses) {
 
@@ -123,4 +124,14 @@ void displace_vertices(
 
 }
 
-
+#ifdef IGL_STATIC_LIBRARY
+template void find_distance<
+	Eigen::MatrixXd, Eigen::MatrixXd, Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXd>(
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+		Eigen::MatrixBase<Eigen::VectorXd> &,
+		int &,
+		int &);
+#endif

@@ -31,6 +31,8 @@ double smoothF = 1; //Smoothing factor
 double ymin=-.2, ymax=.3, xmin=3, xmax=4.2; 
 double displacement = .4, offset = -.2, drop = -.01, thickness = .5, solid_smooth = 1;
 
+
+
 using namespace std;
 
 void show_result(Eigen::MatrixXd V1, Eigen::MatrixXi F1, Eigen::MatrixXd V2, Eigen::MatrixXi F2)
@@ -126,6 +128,7 @@ int main(int argc, char* argv[])
 	std::vector<std::vector<int> > adj;
 	igl::adjacency_list(F, adj);
 
+	
 	find_distance(V, N_smooth, V_ref, F_ref, distances, hits, misses);
 	interpolate_surfaces(adj, distances, misses);
 	displace_vertices(V, N_smooth, distances, xmin, xmax, ymin, ymax); 

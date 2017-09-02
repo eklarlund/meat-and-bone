@@ -10,12 +10,23 @@
 #include <Eigen/Core>
 #include <vector>
 
-// Smooth vertex attributes using uniform Laplacian
+// creates a skirt around surface
+//
 // Inputs:
-//   Ain  #V by #A eigen Matrix of mesh vertex attributes (each vertex has #A attributes)
-//   F    #F by 3 eigne Matrix of face (triangle) indices
+//   V  #V by dim matrix of vertex coordinates
+//   F  #F by simplex_size  matrix of indices of simplex corners into V
+//	 borderNormals	#V by dim matrix of normals at each point in V
+//	 borderLoop #N vector of indexes in F on the border, ordered in a loop
+//	 skirts  number of skirts
+//	 displacement  distance skirt reaches along the surface plane
+//	 offset  distance skirt goes downwards
+//	 drop  extra distance that the first skirt reaches
+//	 
+// 	 offset Thickness of solid
 // Output:
-//   Aout #V by #A eigen Matrix of mesh vertex attributes
+//   V_plus #V by dim matrix of vertex coordinates of skirted surface
+//	 F_plus  #F by simplex_size  matrix of indices of skirted surface
+//
 
 using namespace std;
 

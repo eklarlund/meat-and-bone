@@ -10,13 +10,21 @@
 #include <Eigen/Core>
 #include <vector>
 
-
-// Smooth vertex attributes using uniform Laplacian
+// Turns a surface into a 3d solid by creating a second surface below the original by putting a vertex a a distance (offset) below each
+// vertex in the original surface, then attaching the two surfaces at the border
+//
 // Inputs:
-//   Ain  #V by #A eigen Matrix of mesh vertex attributes (each vertex has #A attributes)
-//   F    #F by 3 eigne Matrix of face (triangle) indices
+//   V  #V by dim matrix of vertex coordinates
+//   F  #F by simplex_size  matrix of indices of simplex corners into V
+//	 borderLoop  #N vector of indexes in F on the border, ordered in a loop
+//	 smoothf  double that determines how much the normals will be smoothed before making secind surface
+//	 offset  distance between old and new surface
+//	 
+// 	 offset Thickness of solid
 // Output:
-//   Aout #V by #A eigen Matrix of mesh vertex attributes
+//   V_out #V by dim matrix of vertex coordinates of solid
+//	 F  #F by simplex_size  matrix of indices of simplex corners into V od solid
+//
 using namespace std;
 
 

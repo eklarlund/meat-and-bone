@@ -2,6 +2,7 @@
 #ifndef LIBIGL_STUFF_MAKE_BITANGENTS
 #define LIBIGL_STUFF_MAKE_BITANGENTS
 #include <Eigen/Core>
+#include <vector>
 
 //Creates bitangents (normals pointing outwards along the edge of the surface) for a surface
 //
@@ -16,15 +17,15 @@
 //	 borderNormals  Eigen matrix containing normals at each point in borderLoop
 //   borderBitangents  #B by 3 matrix of border bitangents corresponding to borderLoop
 
-template <typename DerivedV, typename DerivedF>
+template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
 
 void make_normals_bitangents(
-	const Eigen::MatrixXd &V,
-	const Eigen::MatrixXi &F,
-	const Eigen::MatrixXd &N,
-	Eigen::VectorXi &borderLoop,
-	Eigen::MatrixXd &borderNormals,
-	Eigen::MatrixXd &borderBitangents);
+	const Eigen::MatrixBase<DerivedV> &V,
+	const Eigen::MatrixBase<DerivedF> &F,
+	const Eigen::MatrixBase<DerivedN> &N,
+	Eigen::MatrixBase<DerivedBL> &borderLoop,
+	Eigen::MatrixBase<DerivedBN> &borderNormals,
+	Eigen::MatrixBase<DerivedBB> &borderBitangents);
 
 void make_bitangents(
 	const Eigen::MatrixXd & V,

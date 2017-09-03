@@ -14,6 +14,8 @@ build/
 # ignore visual studio code
 .vscode/
 .vs/
+CMakeSettings.json
+x64/
 
 # Windows Installer files
 *.cab

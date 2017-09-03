@@ -6,6 +6,9 @@
 
 using namespace std;
 
+
+template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
+
 bool norms_are_oriented(
 	const Eigen::MatrixXd &V,
 	const Eigen::MatrixXi &F,
@@ -69,12 +72,12 @@ bool norms_are_oriented(
 }
 
 void make_normals_bitangents(
-	const Eigen::MatrixXd &V,
-	const Eigen::MatrixXi &F,
-	const Eigen::MatrixXd &N,
-	Eigen::VectorXi &borderLoop,
-	Eigen::MatrixXd &borderNormals,
-	Eigen::MatrixXd &borderBitangents)
+	const Eigen::MatrixBase<DerivedV> &V,
+	const Eigen::MatrixBase<DerivedF> &F,
+	const Eigen::MatrixBase<DerivedN> &N,
+	Eigen::MatrixBase<DerivedBL> &borderLoop,
+	Eigen::MatrixBase<DerivedBN> &borderNormals,
+	Eigen::MatrixBase<DerivedBB> &borderBitangents)
 {
 	make_bitangents(V, F, borderLoop, N, borderBitangents);
 
@@ -115,3 +118,15 @@ void make_bitangents(
 	}
 }
 
+
+
+#ifdef IGL_STATIC_LIBRARY
+template void make_normals_bitangents<
+	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+		const Eigen::MatrixBase<DerivedV> &,
+		const Eigen::MatrixBase<DerivedF> &,
+		const Eigen::MatrixBase<DerivedN> &,
+		Eigen::MatrixBase<DerivedBL> &,
+		Eigen::MatrixBase<DerivedBN> &,
+		Eigen::MatrixBase<DerivedBB> &);
+#endif

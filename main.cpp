@@ -19,6 +19,7 @@
 #include <meat_and_bone/make_solid.h>
 #include <meat_and_bone/make_skirt.h>
 #include <meat_and_bone/laplace_smooth.h>
+#include <meat_and_bone/make_bitangents.h>
 
 #define CHECK(expression, ...) (void)(                                                  \
              expression ||                                                              \

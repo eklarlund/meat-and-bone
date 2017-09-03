@@ -1,4 +1,5 @@
 #include "make_skirt.h"
+#include "make_bitangents.cpp"
 #include <Eigen/Sparse>
 #include <Eigen/Dense>
 #include <igl/orientable_patches.h>
@@ -21,7 +22,7 @@ int triangle_number(int i)
 	return i * (i + 1) / 2;
 }
 
-void make_normals_bitangents(const Eigen::MatrixXd &V,
+/*void make_normals_bitangents(const Eigen::MatrixXd &V,
 							 const Eigen::MatrixXi &F,
 							 const Eigen::MatrixXd &N,
 							 Eigen::VectorXi &borderLoop,
@@ -43,7 +44,7 @@ void make_normals_bitangents(const Eigen::MatrixXd &V,
 		borderNormals = borderNormals.colwise().reverse().eval();
 	};
 }
-
+*/
 bool make_skirt(
 	const Eigen::MatrixXd &V,
 	const Eigen::MatrixXi &F,
@@ -78,7 +79,7 @@ bool make_skirt(
 		cout << "\ndelta bitan, norm: " << delta_bitan << ", " << delta_norm;
 
 		add_skirt_layer(V_prev, F_prev, borderLoop, borderNormals, borderBitangents,
-						delta_norm, delta_bitan, V_plus, F_plus);
+			delta_norm, delta_bitan, V_plus, F_plus);
 		for (int j = 0; j < num_border_v; j++)
 		{
 			borderLoop(j) = (i)*num_border_v + n + j;
@@ -114,26 +115,28 @@ bool make_skirt(
 	const int n_border = borderLoop.rows();
 	Eigen::MatrixXd borderNormals(n_border, 3);
 	Eigen::MatrixXd borderBitangents(n_border, 3);
-	make_normals_bitangents(V,
-							F,
-							N,
-							borderLoop,
-							borderNormals,
-							borderBitangents);
+	/*make_normals_bitangents(
+		V,
+		F,
+		N,
+		borderLoop,
+		borderNormals,
+		borderBitangents);*/
+	mabtest();
 
 	return make_skirt(V, F, borderNormals,
-					  borderBitangents,
-					  V_plus,
-					  F_plus,
-					  borderLoop,
-					  skirts,
-					  displacement,
-					  offset,
-					  drop);
+		borderBitangents,
+		V_plus,
+		F_plus,
+		borderLoop,
+		skirts,
+		displacement,
+		offset,
+		drop);
 }
 
 
-void make_bitangents(
+/*void make_bitangents(
 	const Eigen::MatrixXd &V,
 	const Eigen::MatrixXi &F,
 	const Eigen::VectorXi &borderLoop,
@@ -154,7 +157,7 @@ void make_bitangents(
 		borderBiTangents.row(i) = norm_curr.cross(curve_tangent).normalized();
 	}
 }
-
+*/
 void add_skirt_layer(
 	const Eigen::MatrixXd &V,
 	const Eigen::MatrixXi &F,
@@ -186,7 +189,7 @@ void add_skirt_layer(
 		F_plus.row(f_curr++) = new_face2;
 	}
 }
-
+/*
 bool norms_are_oriented(
 	const Eigen::MatrixXd &V,
 	const Eigen::MatrixXi &F,
@@ -247,4 +250,4 @@ bool norms_are_oriented(
 		cout << "Orientation: incorrect" << endl;
 		return false;
 	}
-}
+}*/

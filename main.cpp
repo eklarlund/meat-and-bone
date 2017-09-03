@@ -15,7 +15,6 @@
 #include <igl/writeOBJ.h>
 #include <igl/boundary_loop.h>
 
-
 #include <meat_and_bone/interpolate.h>
 #include <meat_and_bone/make_solid.h>
 #include <meat_and_bone/make_skirt.h>
@@ -79,6 +78,7 @@ static void show_usage(string name)
 
 int main(int argc, char* argv[])
 {
+	
 	if (argc < 3) {
 		show_usage(argv[0]);
 		return 1;

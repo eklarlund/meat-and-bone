@@ -10,6 +10,7 @@
 #include <Eigen/Core>
 #include <vector>
 
+
 // creates a skirt around surface
 //
 // Inputs:
@@ -57,12 +58,12 @@ bool make_skirt(
 	const double drop
 );
 
-void make_bitangents(
+/*void make_bitangents(
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
 	const Eigen::VectorXi & borderLoop,
 	const Eigen::MatrixXd & normals,
-	Eigen::MatrixXd & bitangent);
+	Eigen::MatrixXd & bitangent);*/
 
 void add_skirt_layer(
 	const Eigen::MatrixXd & V,
@@ -76,10 +77,10 @@ void add_skirt_layer(
 	Eigen::MatrixXi & F_plus
 );
 
-bool norms_are_oriented(
+/*bool norms_are_oriented(
 	const Eigen::MatrixXd & V,
 	const Eigen::MatrixXi & F,
 	const Eigen::MatrixXd & bitangent,
-	const Eigen::VectorXi & borderLoop);
+	const Eigen::VectorXi & borderLoop);*/
 
 #endif

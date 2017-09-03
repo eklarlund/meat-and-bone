@@ -11,7 +11,7 @@
 #include <vector>
 
 
-// finds the distance between each point on surface A to surface B along the normals of surface A, if the normal does not intersect, then DOUBLE_MAX is returned
+// Uses ray shooting to find the distance between each point on surface A to surface B along the normals of surface A, if the normal does not intersect, then DOUBLE_MAX is returned
 //
 // Inputs:
 //   V  #V by dim matrix of vertex coordinates in A
@@ -36,7 +36,7 @@ void find_distance(
 
 using namespace std;
 
-// Interpolates missing distances from find_distance
+// Find_distance will not always be able to find an intersection between the ray and the other surface, this function interpolates the missing distances
 //
 // Inputs:
 //   adj	adjaceny matrix 
@@ -56,7 +56,7 @@ double displace(
 	double ymin,
 	double ymax);
 
-// moves each point in V based on the value in distances
+// moves each point in V based on the value in distances, the set of distances from find_distance
 //
 // Inputs:
 //   V  #V by dim matrix of vertex coordinates

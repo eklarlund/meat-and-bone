@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -116,7 +116,7 @@
 
         <div id = "discussionContentDiv" style = "display: none">
               <h2>Technical Discussion</h2>
-              <img src = "coronal.png" width = '700'>
+              <img src = "images/coronal.png" width = '700'>
               <p>
                 The white surface is the bone, the red is the surface of the soft tissue, and the green is the calculated surface, the contact surface of the device.
                 The algorithm looks at each point of the red surface, and finds the thickness of the soft tissue, based on the distance to the white surface.
@@ -126,7 +126,7 @@
                 If the thickness is more than the maximum thickness, then the green surface follows the red surface, but is apart by the maximum displacement.
                 If the thickness is between minimum and maximum thickness, then the green surface is displaced according to an interpolation:
               </p>
-              <img src =  'Graph.JPG' width =  '700'>
+              <img src =  'images/Graph.JPG' width =  '700'>
               <p>The modified surface is then transformed into a solid figure with beveled edges,
                 ready to be 3d printed.
               </p>

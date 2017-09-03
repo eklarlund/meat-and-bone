@@ -27,12 +27,15 @@ void make_normals_bitangents(
 	Eigen::MatrixBase<DerivedBN> &borderNormals,
 	Eigen::MatrixBase<DerivedBB> &borderBitangents);
 
+template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
+
 void make_bitangents(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::VectorXi & borderLoop,
-	const Eigen::MatrixXd & normals,
-	Eigen::MatrixXd & bitangent);
+	const Eigen::MatrixBase<DerivedV> &V,
+	const Eigen::MatrixBase<DerivedF> &F,
+	const Eigen::MatrixBase<DerivedN> &N,
+	Eigen::MatrixBase<DerivedBL> &borderLoop,
+	Eigen::MatrixBase<DerivedBN> &borderNormals,
+	Eigen::MatrixBase<DerivedBB> &borderBitangents);
 
 void mabtest(
 

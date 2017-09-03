@@ -7,7 +7,6 @@
 using namespace std;
 
 
-template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
 
 bool norms_are_oriented(
 	const Eigen::MatrixXd &V,
@@ -70,6 +69,7 @@ bool norms_are_oriented(
 		return false;
 	}
 }
+template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
 
 void make_normals_bitangents(
 	const Eigen::MatrixBase<DerivedV> &V,
@@ -93,15 +93,19 @@ void make_normals_bitangents(
 		borderNormals = borderNormals.colwise().reverse().eval();
 	}
 }
+
+
 void mabtest() {
 
 }
+template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedN, typename DerivedBB>
+
 void make_bitangents(
-	const Eigen::MatrixXd &V,
-	const Eigen::MatrixXi &F,
-	const Eigen::VectorXi &borderLoop,
-	const Eigen::MatrixXd &normals,
-	Eigen::MatrixXd &borderBiTangents)
+	const Eigen::MatrixBase<DerivedV> &V,
+	const Eigen::MatrixBase<DerivedF> &F,
+	const Eigen::MatrixBase<DerivedBL> &borderLoop,
+	const Eigen::MatrixBase<DerivedN> &normals,
+	Eigen::MatrixBase<DerivedBB> &borderBiTangents)
 {
 
 	Eigen::Vector3d curve_tangent; //Vector from previous edge to next edge
@@ -123,10 +127,19 @@ void make_bitangents(
 #ifdef IGL_STATIC_LIBRARY
 template void make_normals_bitangents<
 	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
-		const Eigen::MatrixBase<DerivedV> &,
-		const Eigen::MatrixBase<DerivedF> &,
-		const Eigen::MatrixBase<DerivedN> &,
-		Eigen::MatrixBase<DerivedBL> &,
-		Eigen::MatrixBase<DerivedBN> &,
-		Eigen::MatrixBase<DerivedBB> &);
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		Eigen::MatrixBase<Eigen::VectorXi> &,
+		Eigen::MatrixBase<Eigen::MatrixXd> &,
+		Eigen::MatrixBase<Eigen::MatrixXd> &);
+
+
+template void make_bitangents<
+	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+		const Eigen::MatrixBase<Eigen::VectorXi> &,
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		Eigen::MatrixBase<Eigen::MatrixXd> &);
 #endif

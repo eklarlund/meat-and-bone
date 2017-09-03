@@ -5,12 +5,14 @@
 
 using namespace std;
 
+template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedV_out, typename DerivedF_out>
+
 bool make_solid(
-	const Eigen::MatrixXd &V,
-	const Eigen::MatrixXi &F,
-	const Eigen::VectorXi &borderLoop,
-	Eigen::MatrixXd & V_out,
-	Eigen::MatrixXi & F_out,
+	const Eigen::MatrixBase<DerivedV> &V,
+	const Eigen::MatrixBase<DerivedF> &F,
+	const Eigen::MatrixBase<DerivedBL> &borderLoop,
+	Eigen::MatrixBase<DerivedV_out> & V_out,
+	Eigen::MatrixBase<DerivedF_out> & F_out,
 	const double smoothf,
 	const double offset) {
 
@@ -66,4 +68,14 @@ bool make_solid(
 	return 1;
 }
 
-
+#ifdef IGL_STATIC_LIBRARY
+template bool make_solid
+<Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXi>(
+	const Eigen::MatrixBase<Eigen::MatrixXd> &,
+	const Eigen::MatrixBase<Eigen::MatrixXi> &,
+	const Eigen::MatrixBase<Eigen::VectorXi> &,
+	Eigen::MatrixBase<Eigen::MatrixXd> &,
+	Eigen::MatrixBase<Eigen::MatrixXi> &,
+	const double,
+	const double);
+#endif

@@ -11,13 +11,12 @@
 #include <igl/orient_outward.cpp>
 #include <vector>
 
-template <typename DerivedV, typename DerivedF>
-
+template <typename DerivedV, typename DerivedF, typename DerivedVS, typename DerivedNS>
 void laplace_smooth(
 	const Eigen::PlainObjectBase<DerivedV>& V,
 	const Eigen::PlainObjectBase<DerivedF>& F,
-	Eigen::PlainObjectBase<DerivedV>& V_smooth,
-	Eigen::PlainObjectBase<DerivedV> & N_smooth,
+	Eigen::PlainObjectBase<DerivedVS>& V_smooth,
+	Eigen::PlainObjectBase<DerivedNS> & N_smooth,
 	double smooth_factor)
  {
 
@@ -46,11 +45,10 @@ void laplace_smooth(
 
 #ifdef IGL_STATIC_LIBRARY
 	template void laplace_smooth
-	<Eigen::Matrix<double, -1, -1, 0, -1, -1>,
-	Eigen::Matrix<int, -1, -1, 0, -1, -1> >(
-		Eigen::PlainObjectBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> > const&,
-		Eigen::PlainObjectBase<Eigen::Matrix<int, -1, -1, 0, -1, -1> > const&,
-		Eigen::PlainObjectBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> > &,
-		Eigen::PlainObjectBase<Eigen::Matrix<double, -1, -1, 0, -1, -1> >&,
+	<Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+		const Eigen::PlainObjectBase<Eigen::MatrixXd> &,
+		const Eigen::PlainObjectBase<Eigen::MatrixXi> &,
+		Eigen::PlainObjectBase<Eigen::MatrixXd> &,
+		Eigen::PlainObjectBase<Eigen::MatrixXd>&,
 		double);
 #endif

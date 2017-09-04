@@ -16,13 +16,14 @@
 	//   F    #F by 3 eigne Matrix of face (triangle) indices
 	// Output:
 	//   Aout #V by #A eigen Matrix of mesh vertex attributes
-	template <typename DerivedV, typename DerivedF>
+	template <typename DerivedV, typename DerivedF, typename DerivedVS, typename DerivedNS>
 	 void laplace_smooth(
 		 const Eigen::PlainObjectBase<DerivedV>& V,
 		 const Eigen::PlainObjectBase<DerivedF>& F,
-		 Eigen::PlainObjectBase<DerivedV>& V_smooth,
-		 Eigen::PlainObjectBase<DerivedV> & N_smooth,
+		 Eigen::PlainObjectBase<DerivedVS> & V_smooth,
+		 Eigen::PlainObjectBase<DerivedNS> & N,
 		 double smooth_factor);
+	 //because this function uses Eigen::conservativeResize, along with libigl functions calling PlainObjectBase, it must use PlainObjectBase functions
 
 
 #ifndef IGL_STATIC_LIBRARY

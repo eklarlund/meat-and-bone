@@ -37,12 +37,9 @@ void make_bitangents(
 	Eigen::MatrixBase<DerivedBN> &borderNormals,
 	Eigen::MatrixBase<DerivedBB> &borderBitangents);
 
-void mabtest(
-
-);
 
 #ifndef IGL_STATIC_LIBRARY
-#  include "make_bitangents.cpp"
+#include "make_bitangents.cpp"
 #endif
 
 #endif

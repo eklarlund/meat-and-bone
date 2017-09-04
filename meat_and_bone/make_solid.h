@@ -30,11 +30,11 @@ using namespace std;
 template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedV_out, typename DerivedF_out>
 
 bool make_solid(
-	const Eigen::MatrixBase<DerivedV> &V,
-	const Eigen::MatrixBase<DerivedF> &F,
-	const Eigen::MatrixBase<DerivedBL> &borderLoop,
-	Eigen::MatrixBase<DerivedV_out> & V_out,
-	Eigen::MatrixBase<DerivedF_out> & F_out,
+	const Eigen::PlainObjectBase<DerivedV> &V,
+	const Eigen::PlainObjectBase<DerivedF> &F,
+	const Eigen::PlainObjectBase<DerivedBL> &borderLoop,
+	Eigen::PlainObjectBase<DerivedV_out> & V_out,
+	Eigen::PlainObjectBase<DerivedF_out> & F_out,
 	const double smoothf,
 	const double offset);
 

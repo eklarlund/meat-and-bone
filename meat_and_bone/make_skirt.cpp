@@ -122,7 +122,6 @@ bool make_skirt(
 		borderLoop,
 		borderNormals,
 		borderBitangents);*/
-	mabtest();
 
 	return make_skirt(V, F, borderNormals,
 		borderBitangents,

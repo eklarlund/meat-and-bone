@@ -69,8 +69,8 @@ bool norms_are_oriented(
 		return false;
 	}
 }
-template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
 
+template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
 void make_normals_bitangents(
 	const Eigen::MatrixBase<DerivedV> &V,
 	const Eigen::MatrixBase<DerivedF> &F,
@@ -95,9 +95,6 @@ void make_normals_bitangents(
 }
 
 
-void mabtest() {
-
-}
 template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedN, typename DerivedBB>
 
 void make_bitangents(
@@ -142,4 +139,6 @@ template void make_bitangents<
 		const Eigen::MatrixBase<Eigen::VectorXi> &,
 		const Eigen::MatrixBase<Eigen::MatrixXd> &,
 		Eigen::MatrixBase<Eigen::MatrixXd> &);
+
+template void igl::slice<class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> >, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::DenseBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > const &, int, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
 #endif

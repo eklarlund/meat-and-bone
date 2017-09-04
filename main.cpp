@@ -135,7 +135,7 @@ int main(int argc, char* argv[])
 	interpolate_surfaces(adj, distances, misses);
 	displace_vertices(V, N_smooth, distances, xmin, xmax, ymin, ymax); 
 
-	igl::writeOBJ("../displaced_surface", V, F);
+	igl::writeOBJ("displaced_surface", V, F);
 
 	std::vector<std::vector<int>> borderLoops; //vector of ordered lists of border vertices
 	Eigen::MatrixXd V_plus;

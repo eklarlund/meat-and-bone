@@ -127,25 +127,24 @@ void make_bitangents(
 
 
 #ifdef IGL_STATIC_LIBRARY
-//template void make_normals_bitangents<
-//	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
-//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-//		const Eigen::MatrixBase<Eigen::MatrixXi> &,
-//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-//		Eigen::MatrixBase<Eigen::VectorXi> &,
-//		Eigen::MatrixBase<Eigen::MatrixXd> &,
-//		Eigen::MatrixBase<Eigen::MatrixXd> &);
-//
-//
-//template void make_bitangents<
-//	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
-//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-//		const Eigen::MatrixBase<Eigen::MatrixXi> &,
-//		Eigen::MatrixBase<Eigen::VectorXi> &,
-//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-//		Eigen::MatrixBase<Eigen::MatrixXd> &);
-//
-////template void igl::slice<class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> >, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::DenseBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > const &, int, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
-////template void make_normals_bitangents<class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1> >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
+template void make_normals_bitangents<
+	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		Eigen::MatrixBase<Eigen::VectorXi> &,
+		Eigen::MatrixBase<Eigen::MatrixXd> &,
+		Eigen::MatrixBase<Eigen::MatrixXd> &);
+
+
+template void make_bitangents<
+	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+		Eigen::MatrixBase<Eigen::VectorXi> &,
+		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+		Eigen::MatrixBase<Eigen::MatrixXd> &);
+
+template void make_normals_bitangents<class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1> >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
 
 #endif

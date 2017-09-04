@@ -1,6 +1,5 @@
 #include "make_skirt.h"
 #include "make_bitangents.h"
-#include "make_bitangents.cpp"
 #include <Eigen/Sparse>
 #include <Eigen/Dense>
 #include <igl/orientable_patches.h>

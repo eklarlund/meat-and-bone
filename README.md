@@ -15,8 +15,8 @@ The project can be used as a library, here are some routines that can be useful.
 
 To build the test and the sample applications, use Cmake. You may have to set `libigl_location`, which is predefined as a sibling directory to the meat and bone source code directory.
 
-The sample application can be invoked as follows:
+The sample application can be invoked from the build directory as follows:
 
 ```console
-libmeat_and_bone_bin <work surface> <reference surface> <output file>
+./libmeat_and_bone_bin testdata/bone_example/work.obj testdata/bone_example/ref.obj result.obj
 ```

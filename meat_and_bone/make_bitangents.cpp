@@ -80,23 +80,12 @@ void make_normals_bitangents(
 {
 	make_bitangents(V, F, borderLoop, N, borderBitangents);
 
-	// Pack the rows indexed by borderLoop into borderNormals
-	//igl::slice(N, borderLoop, 1, borderNormals);
-	
+	// Pack the rows indexed by borderLoop into borderNormals	
 	if (borderNormals.rows() != borderLoop.rows()) {
 		borderNormals.resize(borderLoop.rows());
 	}
 	for (int i = 0; i < borderLoop.rows(); i++) {
 		borderNormals.row(i) = N.row(borderLoop(i));
-	}
-
-	if (!norms_are_oriented(V, F, borderBitangents, borderLoop))
-	{
-		cout << endl << "Flippping bitans" << endl;
-		borderLoop.reverseInPlace();
-		borderBitangents = borderBitangents.colwise().reverse().eval();
-		borderBitangents = -borderBitangents;
-		borderNormals = borderNormals.colwise().reverse().eval();
 	}
 }
 
@@ -122,6 +111,14 @@ void make_bitangents(
 		curve_tangent = (V.row(borderLoop(i_prev)) - V.row(borderLoop(i_next)));
 		borderBiTangents.row(i) = norm_curr.cross(curve_tangent).normalized();
 	}
+
+	if (!norms_are_oriented(V, F, borderBiTangents, borderLoop))
+	{
+		cout << endl << "Flippping bitans" << endl;
+		borderLoop.reverseInPlace();
+		borderBiTangents = borderBiTangents.colwise().reverse().eval();
+		borderBiTangents = -borderBiTangents;
+	}
 }
 
 
@@ -144,7 +141,5 @@ template void make_bitangents<
 		Eigen::MatrixBase<Eigen::VectorXi> &,
 		const Eigen::MatrixBase<Eigen::MatrixXd> &,
 		Eigen::MatrixBase<Eigen::MatrixXd> &);
-
-template void make_normals_bitangents<class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1> >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
 
 #endif

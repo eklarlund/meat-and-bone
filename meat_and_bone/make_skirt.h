@@ -30,57 +30,36 @@
 //
 
 using namespace std;
-
+template <typename DerivedV, typename DerivedF, typename DerivedBN, typename DerivedBB, typename DerivedV_plus, typename DerivedF_plus,
+	typename DerivedBL>
 bool make_skirt(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::MatrixXd & borderNormals,
-	const Eigen::MatrixXd & borderBitangents,
-	Eigen::MatrixXd & V_plus,
-	Eigen::MatrixXi & F_plus,
-	Eigen::VectorXi & borderLoop,
+	const Eigen::PlainObjectBase<DerivedV> & V,
+	const Eigen::PlainObjectBase<DerivedF> & F,
+	const Eigen::PlainObjectBase<DerivedBN> & borderNormals,
+	const Eigen::PlainObjectBase<DerivedBB> & borderBitangents,
+	Eigen::PlainObjectBase<DerivedV_plus> & V_plus,
+	Eigen::PlainObjectBase<DerivedF_plus> & F_plus,
+	Eigen::PlainObjectBase<DerivedBL> & borderLoop,
 	const int skirts,
 	const double displacement,
 	const double offset,
 	const double drop
 );
 
+template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedV_plus, typename DerivedF_plus, typename DerivedBL>
 bool make_skirt(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::MatrixXd & N,
-	Eigen::MatrixXd & V_plus,
-	Eigen::MatrixXi & F_plus,
-	Eigen::VectorXi & borderLoop,
+	const Eigen::PlainObjectBase<DerivedV> & V,
+	const Eigen::PlainObjectBase<DerivedF> & F,
+	const Eigen::PlainObjectBase<DerivedN> & N,
+	Eigen::PlainObjectBase<DerivedV_plus> & V_plus,
+	Eigen::PlainObjectBase<DerivedF_plus> & F_plus,
+	Eigen::PlainObjectBase<DerivedBL> & borderLoop,
 	const int skirts,
 	const double displacement,
 	const double offset,
 	const double drop
 );
 
-/*void make_bitangents(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::VectorXi & borderLoop,
-	const Eigen::MatrixXd & normals,
-	Eigen::MatrixXd & bitangent);*/
 
-void add_skirt_layer(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::VectorXi & borderLoop,
-	const Eigen::MatrixXd & borderNormals,
-	const Eigen::MatrixXd & borderBitangents,
-	const double delta_norm,
-	const double delta_bitan,
-	Eigen::MatrixXd & V_plus,
-	Eigen::MatrixXi & F_plus
-);
-
-/*bool norms_are_oriented(
-	const Eigen::MatrixXd & V,
-	const Eigen::MatrixXi & F,
-	const Eigen::MatrixXd & bitangent,
-	const Eigen::VectorXi & borderLoop);*/
 
 #endif

@@ -49,12 +49,6 @@ void interpolate_surfaces(
 	Eigen::VectorXd & distances,
 	int & misses);
 
-double displace(
-	double x,
-	double xmin,
-	double xmax,
-	double ymin,
-	double ymax);
 
 // moves each point in V based on the value in distances, the set of distances from find_distance
 //

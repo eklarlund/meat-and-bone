@@ -28,7 +28,6 @@
 using namespace std;
 
 template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedV_out, typename DerivedF_out>
-
 bool make_solid(
 	const Eigen::PlainObjectBase<DerivedV> &V,
 	const Eigen::PlainObjectBase<DerivedF> &F,

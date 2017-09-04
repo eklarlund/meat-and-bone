@@ -18,7 +18,6 @@
 //   borderBitangents  #B by 3 matrix of border bitangents corresponding to borderLoop
 
 template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
-
 void make_normals_bitangents(
 	const Eigen::MatrixBase<DerivedV> &V,
 	const Eigen::MatrixBase<DerivedF> &F,
@@ -27,15 +26,13 @@ void make_normals_bitangents(
 	Eigen::MatrixBase<DerivedBN> &borderNormals,
 	Eigen::MatrixBase<DerivedBB> &borderBitangents);
 
-template <typename DerivedV, typename DerivedF, typename DerivedN, typename DerivedBL, typename DerivedBN, typename DerivedBB>
-
+template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedN, typename DerivedBB>
 void make_bitangents(
 	const Eigen::MatrixBase<DerivedV> &V,
 	const Eigen::MatrixBase<DerivedF> &F,
-	const Eigen::MatrixBase<DerivedN> &N,
 	Eigen::MatrixBase<DerivedBL> &borderLoop,
-	Eigen::MatrixBase<DerivedBN> &borderNormals,
-	Eigen::MatrixBase<DerivedBB> &borderBitangents);
+	const Eigen::MatrixBase<DerivedN> &normals,
+	Eigen::MatrixBase<DerivedBB> &borderBiTangents);
 
 
 #ifndef IGL_STATIC_LIBRARY

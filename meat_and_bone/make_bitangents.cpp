@@ -1,5 +1,4 @@
 #include "make_bitangents.h"
-#include <igl/slice.h>
 #include <Eigen/Sparse>
 #include <Eigen/Dense>
 #include <iostream>
@@ -82,7 +81,14 @@ void make_normals_bitangents(
 	make_bitangents(V, F, borderLoop, N, borderBitangents);
 
 	// Pack the rows indexed by borderLoop into borderNormals
-	igl::slice(N, borderLoop, 1, borderNormals);
+	//igl::slice(N, borderLoop, 1, borderNormals);
+	
+	if (borderNormals.rows() != borderLoop.rows()) {
+		borderNormals.resize(borderLoop.rows());
+	}
+	for (int i = 0; i < borderLoop.rows(); i++) {
+		borderNormals.row(i) = N.row(borderLoop(i));
+	}
 
 	if (!norms_are_oriented(V, F, borderBitangents, borderLoop))
 	{
@@ -96,11 +102,10 @@ void make_normals_bitangents(
 
 
 template <typename DerivedV, typename DerivedF, typename DerivedBL, typename DerivedN, typename DerivedBB>
-
 void make_bitangents(
 	const Eigen::MatrixBase<DerivedV> &V,
 	const Eigen::MatrixBase<DerivedF> &F,
-	const Eigen::MatrixBase<DerivedBL> &borderLoop,
+	Eigen::MatrixBase<DerivedBL> &borderLoop,
 	const Eigen::MatrixBase<DerivedN> &normals,
 	Eigen::MatrixBase<DerivedBB> &borderBiTangents)
 {
@@ -122,23 +127,25 @@ void make_bitangents(
 
 
 #ifdef IGL_STATIC_LIBRARY
-template void make_normals_bitangents<
-	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
-		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-		const Eigen::MatrixBase<Eigen::MatrixXi> &,
-		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-		Eigen::MatrixBase<Eigen::VectorXi> &,
-		Eigen::MatrixBase<Eigen::MatrixXd> &,
-		Eigen::MatrixBase<Eigen::MatrixXd> &);
+//template void make_normals_bitangents<
+//	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::MatrixXd, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+//		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+//		Eigen::MatrixBase<Eigen::VectorXi> &,
+//		Eigen::MatrixBase<Eigen::MatrixXd> &,
+//		Eigen::MatrixBase<Eigen::MatrixXd> &);
+//
+//
+//template void make_bitangents<
+//	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
+//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+//		const Eigen::MatrixBase<Eigen::MatrixXi> &,
+//		Eigen::MatrixBase<Eigen::VectorXi> &,
+//		const Eigen::MatrixBase<Eigen::MatrixXd> &,
+//		Eigen::MatrixBase<Eigen::MatrixXd> &);
+//
+////template void igl::slice<class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> >, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::DenseBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > const &, int, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
+////template void make_normals_bitangents<class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1>, class Eigen::Matrix<double, -1, -1, 0, -1, -1> >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::MatrixBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
 
-
-template void make_bitangents<
-	Eigen::MatrixXd, Eigen::MatrixXi, Eigen::VectorXi, Eigen::MatrixXd, Eigen::MatrixXd>(
-		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-		const Eigen::MatrixBase<Eigen::MatrixXi> &,
-		const Eigen::MatrixBase<Eigen::VectorXi> &,
-		const Eigen::MatrixBase<Eigen::MatrixXd> &,
-		Eigen::MatrixBase<Eigen::MatrixXd> &);
-
-template void igl::slice<class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> >, class Eigen::Matrix<int, -1, 1, 0, -1, 1>, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > >(class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > const &, class Eigen::DenseBase<class Eigen::Matrix<int, -1, 1, 0, -1, 1> > const &, int, class Eigen::MatrixBase<class Eigen::Matrix<double, -1, -1, 0, -1, -1> > &);
 #endif

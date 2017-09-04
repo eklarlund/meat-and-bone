@@ -21,6 +21,7 @@
 #include <meat_and_bone/laplace_smooth.h>
 #include <meat_and_bone/make_bitangents.h>
 
+
 #define CHECK(expression, ...) (void)(                                                  \
              expression ||                                                              \
              (std::cerr << "FAIL! " << std::string(__VA_ARGS__) << "\n" << (__FILE__) <<  \

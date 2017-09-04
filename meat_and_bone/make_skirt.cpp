@@ -1,5 +1,6 @@
 #include "make_skirt.h"
 #include "make_bitangents.h"
+#include "make_bitangents.cpp"
 #include <Eigen/Sparse>
 #include <Eigen/Dense>
 #include <igl/orientable_patches.h>
@@ -8,7 +9,6 @@
 #include <igl/massmatrix.h>
 #include <igl/cotmatrix.h>
 #include <igl/orient_outward.h>
-#include <igl/slice.h>
 #include <igl/vertex_triangle_adjacency.h>
 #include <igl/vertex_triangle_adjacency.cpp>
 #include <igl/orient_outward.cpp>
@@ -115,13 +115,13 @@ bool make_skirt(
 	const int n_border = borderLoop.rows();
 	Eigen::MatrixXd borderNormals(n_border, 3);
 	Eigen::MatrixXd borderBitangents(n_border, 3);
-	/*make_normals_bitangents(
+	make_normals_bitangents(
 		V,
 		F,
 		N,
 		borderLoop,
 		borderNormals,
-		borderBitangents);*/
+		borderBitangents);
 
 	return make_skirt(V, F, borderNormals,
 		borderBitangents,
@@ -250,3 +250,4 @@ bool norms_are_oriented(
 		return false;
 	}
 }*/
+

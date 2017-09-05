@@ -82,12 +82,9 @@ template <typename DerivedV, typename DerivedF, typename DerivedBN, typename Der
 	double delta_bitan = displacement / skirts;
 	double delta_norm = offset / denominator + drop;
 	double total_delta_norm = 0;
-	cout << "Deltabitan = " << delta_bitan << endl;
 
 	for (int i = 0; i < skirts; i++)
 	{
-		cout << "\ndelta bitan, norm: " << delta_bitan << ", " << delta_norm;
-
 		add_skirt_layer(V_prev, F_prev, borderLoop, borderNormals, borderBitangents,
 			delta_norm, delta_bitan, V_plus, F_plus);
 		for (int j = 0; j < num_border_v; j++)
@@ -101,9 +98,6 @@ template <typename DerivedV, typename DerivedF, typename DerivedBN, typename Der
 		F_prev = F_plus;
 		total_delta_norm += delta_norm;
 		delta_norm += offset / denominator - ((i == 0) ? drop : 0);
-
-		cout << "\n skirt layer " << i << " added\n";
-		cout << "total delta_norm: " << total_delta_norm << endl;
 	}
 
 	return true;

@@ -37,7 +37,7 @@ void find_distance(
 			distances(i) = hit.t;
 			if (distances(i) < 0)
 			{
-				std::cout << "distance<0\n";
+//				std::cout << "distance<0\n";
 			}
 		}
 		else
@@ -46,10 +46,10 @@ void find_distance(
 		}
 		if (i%num_dots == 0)
 		{
-			std::cout << ".";
+			//std::cout << ".";
 		}
 	}
-	std::cout << "ray shooting done\n";
+	//std::cout << "ray shooting done\n";
 }
 
 void interpolate_surfaces(
@@ -81,9 +81,6 @@ void interpolate_surfaces(
 		}
 	}
 	double avgD = distances.sum() / distances.rows();
-	std::cout << "\nAverage: " << avgD;
-	std::cout << "\nmax: " << distances.maxCoeff();
-	std::cout << "\nMin: " << distances.minCoeff();
 }
 
 double displace(

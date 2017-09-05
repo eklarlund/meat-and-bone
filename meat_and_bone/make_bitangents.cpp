@@ -55,16 +55,13 @@ bool norms_are_oriented(
 			incorrects++;
 		}
 	}
-	cout << "Normals pointing out: " << corrects << endl;
-	cout << "Normals pointing in: " << incorrects << endl;
+	
 	if (corrects >= incorrects)
 	{
-		cout << "Orientation: correct" << endl;
 		return true;
 	}
 	else
 	{
-		cout << "Orientation: incorrect" << endl;
 		return false;
 	}
 }
@@ -114,7 +111,6 @@ void make_bitangents(
 
 	if (!norms_are_oriented(V, F, borderBiTangents, borderLoop))
 	{
-		cout << endl << "Flippping bitans" << endl;
 		borderLoop.reverseInPlace();
 		borderBiTangents = borderBiTangents.colwise().reverse().eval();
 		borderBiTangents = -borderBiTangents;

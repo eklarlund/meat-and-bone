@@ -115,3 +115,15 @@ target_link_libraries(meat_and_bone_test PRIVATE
   ${LIBIGL_LIBRARIES} 
   ${LIBIGL_VIEWER_EXTRA_LIBRARIES})
 
+
+
+  # Tests
+
+  add_test(NAME unit_tests COMMAND meat_and_bone_test)
+
+  configure_file(testdata/palate_example/laser_meat.obj testdata/palate_example/laser_meat.obj)
+  configure_file(testdata/palate_example/ct_bone.obj testdata/palate_example/ct_bone.obj)
+  configure_file(testdata/test/ref.obj testdata/test/ref.obj)
+  configure_file(testdata/test/ref.obj testdata/test/ref.obj)
+
+  add_test(NAME test_palate COMMAND meat_and_bone_bin testdata/palate_example/laser_meat.obj testdata/palate_example/ct_bone.obj result.obj)

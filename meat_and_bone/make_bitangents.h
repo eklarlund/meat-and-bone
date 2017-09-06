@@ -8,10 +8,11 @@
 //
 // Inputs:
 //   V    #V by 3 eigen Matrix of mesh vertices
-//   F    #F by 3 eigne Matrix of face (triangle) indices
+//   F    #F by 3 eigen Matrix of face (triangle) indices
 //	 N	  #V by 3 eigen Matrix of normal vectors for each element in V
-//   borderLoop  Eigen vector containing the indices of the border elements in V, ordered in a Loop, 
-//	             will be flipped to match the so that the normal cross the curve tangent points outwards if nessesary
+//   borderLoop  Eigen vector containing ordered loop of the indices of the border elements in V,
+//				 borderloop is used to make curve tangents by taking the nth element of borderloop, and subtracting it from the n+1th element, 
+//	             borderloop will be flipped so that the normal cross the curve tangent points outwards if nessesary
 //	 
 // Output:
 //	 borderNormals  Eigen matrix containing normals at each point in borderLoop

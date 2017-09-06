@@ -8,11 +8,11 @@ This project uses the data representation and input output routines of libigl.
 
 The project can be used as a library, here are some routines that can be useful.
 
-interpolate.h  displaces a work surface towards or away from a reference surface along a normal field -- just two intuitive intervals, four reals, define the transformation
-laplace_smooth.h displaces vertices for smoother appearance
-make_skirt.h fillets a border of a surface, that is extends the edge in a nice rounded manner
-make_bitangents.h smooths the curve vectors of a border for even smoother skirts
-make_solid.h thickens a surface into a solid
+* `interpolate.h`  displaces a work surface towards or away from a reference surface along a normal field -- just two intuitive intervals, four reals, define the transformation
+* `laplace_smooth.h` displaces vertices for smoother appearance
+* `make_skirt.h` fillets a border of a surface, that is extends the edge in a nice rounded manner
+* `make_bitangents.h` smooths the curve vectors of a border for even smoother skirts
+* `make_solid.h` thickens a surface into a solid
 
 To build the test and the sample applications, use Cmake. You may have to set `libigl_location`, which is predefined as a sibling directory to the meat and bone source code directory.
 
